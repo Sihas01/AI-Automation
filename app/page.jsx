@@ -1,330 +1,64 @@
-import InteractiveChatPreview from "../components/ChatPreview";
+const navItems = ["Services", "Channels", "Workflow", "Pricing"];
 
-const conversations = [
-  {
-    id: "product",
-    name: "Maya Chen",
-    phone: "+1 234 567 8900",
-    channel: "Instagram",
-    status: "Buying a product",
-    preview: "Can I get the jacket in black?",
-    time: "10:30 AM",
-    unread: 3,
-    messages: [
-      { from: "customer", text: "Hi, do you have the premium jacket in black color?", time: "10:30 AM" },
-      {
-        from: "ai",
-        text: "Yes, we have it in black. It is $89.99 and available in S, M, L, and XL.",
-        time: "10:31 AM",
-        tag: "Product match",
-        card: {
-          title: "Premium Jacket",
-          subtitle: "$89.99",
-          meta: "Sizes: S, M, L, XL - Color: Black",
-          action: "View Details",
-        },
-      },
-      { from: "customer", text: "Great. I want to place an order.", time: "10:32 AM" },
-      {
-        from: "ai",
-        text: "Sure. I can create the order now. May I have your delivery address and contact number?",
-        time: "10:32 AM",
-        tag: "Order flow",
-      },
-      { from: "customer", text: "742 Pine Street, Austin. Same number as this chat.", time: "10:34 AM" },
-      {
-        from: "ai",
-        text: "Order #ORD1234 is ready. I sent a secure payment link and will confirm once the receipt is verified.",
-        time: "10:35 AM",
-        tag: "Payment link",
-      },
-    ],
-  },
-  {
-    id: "tracking",
-    name: "Owen Brooks",
-    phone: "+44 7700 900077",
-    channel: "WhatsApp",
-    status: "Tracking order",
-    preview: "Where is order #SF8821?",
-    time: "9:15 AM",
-    unread: 1,
-    messages: [
-      { from: "customer", text: "Can you tell me where order #SF8821 is right now?", time: "9:15 AM" },
-      {
-        from: "ai",
-        text: "I found it. Your order left the regional hub this morning and is scheduled for delivery tomorrow before 6 PM.",
-        time: "9:16 AM",
-        tag: "Order lookup",
-      },
-      { from: "customer", text: "Can I change the delivery window to afternoon?", time: "9:17 AM" },
-      {
-        from: "ai",
-        text: "Yes. I updated the carrier preference to afternoon delivery and sent the new tracking link.",
-        time: "9:18 AM",
-        tag: "Carrier update",
-      },
-      { from: "customer", text: "Perfect, thank you.", time: "9:19 AM" },
-    ],
-  },
-  {
-    id: "refund",
-    name: "Nora Patel",
-    phone: "+1 555 123 4567",
-    channel: "Messenger",
-    status: "Refund request",
-    preview: "I need to return an item.",
-    time: "8:45 AM",
-    unread: 2,
-    messages: [
-      { from: "customer", text: "I received the sneakers yesterday, but the size is wrong. Can I refund them?", time: "8:45 AM" },
-      {
-        from: "ai",
-        text: "I can help with that. The order is within the 30-day return window, so it is eligible for a refund or exchange.",
-        time: "8:46 AM",
-        tag: "Policy check",
-      },
-      { from: "customer", text: "Refund please. What do you need from me?", time: "8:47 AM" },
-      {
-        from: "ai",
-        text: "Please upload a photo of the item and packaging. I will generate a return label once the photo is received.",
-        time: "8:48 AM",
-        tag: "Return label",
-      },
-      { from: "customer", text: "Uploaded.", time: "8:51 AM" },
-      {
-        from: "ai",
-        text: "Thanks. The refund request is approved. Your prepaid return label is ready, and the refund will be issued after carrier scan.",
-        time: "8:52 AM",
-        tag: "Refund approved",
-      },
-    ],
-  },
-  {
-    id: "discount",
-    name: "Ava Wilson",
-    phone: "+61 400 123 456",
-    channel: "Instagram",
-    status: "Discount validation",
-    preview: "Is the discount still valid?",
-    time: "Yesterday",
-    unread: 0,
-    messages: [
-      { from: "customer", text: "Is the spring discount still valid for the starter bundle?", time: "Yesterday" },
-      {
-        from: "ai",
-        text: "Yes. SPRING15 is valid until Friday and applies to the starter bundle.",
-        time: "Yesterday",
-        tag: "Promo check",
-      },
-      { from: "customer", text: "Can you apply it if I order here?", time: "Yesterday" },
-      {
-        from: "ai",
-        text: "Absolutely. I applied the discount and generated a checkout link with the reduced total.",
-        time: "Yesterday",
-        tag: "Checkout link",
-      },
-    ],
-  },
-  {
-    id: "support",
-    name: "Lukas Meyer",
-    phone: "+49 151 2345678",
-    channel: "WhatsApp",
-    status: "Account support",
-    preview: "How do I reset my password?",
-    time: "Yesterday",
-    unread: 0,
-    messages: [
-      { from: "customer", text: "How do I reset my password? I cannot access the dashboard.", time: "Yesterday" },
-      {
-        from: "ai",
-        text: "I can send a secure reset link to the email on your account. Please confirm the last two digits of your phone number.",
-        time: "Yesterday",
-        tag: "Identity check",
-      },
-      { from: "customer", text: "78", time: "Yesterday" },
-      {
-        from: "ai",
-        text: "Verified. I sent the reset link and added a note for the support team in case you need help after signing in.",
-        time: "Yesterday",
-        tag: "Resolved",
-      },
-    ],
-  },
-  {
-    id: "stock",
-    name: "Sofia Rossi",
-    phone: "+39 347 000 1122",
-    channel: "Messenger",
-    status: "Inventory check",
-    preview: "Do you restock the oak desk?",
-    time: "Mon",
-    unread: 1,
-    messages: [
-      { from: "customer", text: "Do you restock the minimalist oak desk soon?", time: "Mon" },
-      {
-        from: "ai",
-        text: "Yes. The next restock is expected on May 3. I can add you to the waitlist and message you when it arrives.",
-        time: "Mon",
-        tag: "Inventory sync",
-      },
-      { from: "customer", text: "Please add me.", time: "Mon" },
-      {
-        from: "ai",
-        text: "Done. You are on the priority waitlist, and I saved your preferred finish as oak.",
-        time: "Mon",
-        tag: "Waitlist added",
-      },
-    ],
-  },
-  {
-    id: "lead",
-    name: "Priya Shah",
-    phone: "+91 98765 43210",
-    channel: "Instagram",
-    status: "Lead capture",
-    preview: "Can someone demo this?",
-    time: "Sun",
-    unread: 4,
-    messages: [
-      { from: "customer", text: "We run a small store. Can someone demo social automation for us?", time: "Sun" },
-      {
-        from: "ai",
-        text: "Yes. I can book a 20-minute demo with a product specialist. What time zone should I use?",
-        time: "Sun",
-        tag: "Lead qualification",
-      },
-      { from: "customer", text: "IST. Tomorrow afternoon works.", time: "Sun" },
-      {
-        from: "ai",
-        text: "I found openings at 2:30 PM and 4:00 PM IST. Which slot should I reserve?",
-        time: "Sun",
-        tag: "Calendar sync",
-      },
-    ],
-  },
-  {
-    id: "payment",
-    name: "Ethan Cole",
-    phone: "+1 415 010 2020",
-    channel: "WhatsApp",
-    status: "Receipt verification",
-    preview: "I sent the payment receipt.",
-    time: "Sat",
-    unread: 2,
-    messages: [
-      { from: "customer", text: "I sent the payment receipt. Can you confirm the order?", time: "Sat" },
-      {
-        from: "ai",
-        text: "I received the screenshot and matched it to order #SF7710. I am verifying the transaction reference now.",
-        time: "Sat",
-        tag: "Receipt scan",
-      },
-      {
-        from: "ai",
-        text: "Payment verified. Your order is confirmed and the warehouse has been notified.",
-        time: "Sat",
-        tag: "Order confirmed",
-      },
-    ],
-  },
+const channelLogos = [
+  ["WhatsApp", "/social-logos/whatsapp.svg"],
+  ["Instagram", "/social-logos/instagram.svg"],
+  ["Messenger", "/social-logos/messenger.svg"],
+  ["Facebook", "/social-logos/facebook.svg"],
+  ["TikTok", "/social-logos/tiktok.svg"],
+  ["Telegram", "/social-logos/telegram.svg"],
 ];
 
-const benefits = [
-  {
-    title: "Fully Automate",
-    body: "Reclaim hundreds of hours weekly by automating routine inquiries, order taking, and FAQ responses with zero human intervention.",
-    icon: "bolt",
-    tone: "bg-primary-container/50 text-primary",
-  },
-  {
-    title: "Improve Experience",
-    body: "Deliver instant, accurate, and personalized responses that delight customers and significantly boost satisfaction scores.",
-    icon: "heart",
-    tone: "bg-secondary-container/70 text-secondary",
-  },
-  {
-    title: "24/7 Availability",
-    body: "Never miss a lead. Your AI agent works around the clock, capturing sales and supporting customers globally, regardless of time zones.",
-    icon: "clock",
-    tone: "bg-tertiary-container/60 text-tertiary",
-  },
+const cmsStats = [
+  ["Conversations", "1,284", "+18%"],
+  ["Orders created", "316", "+24%"],
+  ["Payments tracked", "$8.9k", "+12%"],
+  ["AI resolution", "92%", "+9%"],
 ];
 
-const workflow = [
+const serviceCards = [
   {
-    step: "1",
-    title: "Customer Inquiry",
-    icon: "user",
-    body: '"Hi, do you have the minimalist desk in oak?"',
-    active: false,
+    title: "Customer support",
+    body: "Answers product, delivery, policy, and business questions with your approved tone.",
+    icon: "message",
   },
   {
-    step: "2",
-    title: "AI Answers",
-    icon: "bot",
-    body: '"Yes, it is in stock! It features solid oak and hidden cable management. Would you like to order?"',
-    active: true,
-  },
-  {
-    step: "3",
-    title: "Order Placement",
+    title: "Order handling",
+    body: "Collects product choices, quantities, addresses, and customer details from chat.",
     icon: "cart",
-    body: '"Yes, please!"',
-    active: false,
   },
   {
-    step: "4",
-    title: "Details Collected",
-    icon: "doc",
-    body: "AI securely captures delivery address and contact info.",
-    active: true,
+    title: "Payment flow",
+    body: "Guides customers through payment steps and records confirmations for review.",
+    icon: "payment",
   },
   {
-    step: "5",
-    title: "Secure Link Sent",
-    icon: "link",
-    body: "Generates and sends dynamic payment link.",
-    active: true,
-  },
-  {
-    step: "6",
-    title: "Receipt Submitted",
-    icon: "receipt",
-    body: "Customer uploads payment screenshot or confirmation.",
-    active: false,
-  },
-  {
-    step: "7",
-    title: "Order Confirmed",
-    icon: "verified",
-    body: "AI verifies payment receipt, updates CRM, and sends tracking details automatically.",
-    active: true,
-    featured: true,
+    title: "Feedback loop",
+    body: "Captures reviews, complaints, and follow-up requests so nothing gets buried.",
+    icon: "spark",
   },
 ];
 
-const navItems = ["Features", "Solutions", "Workflow", "Pricing", "Resources"];
+const workflowSteps = [
+  ["01", "Map", "We study your products, FAQs, order process, payment rules, and customer tone."],
+  ["02", "Train", "Your AI model is configured around real workflows instead of generic scripts."],
+  ["03", "Connect", "Social inboxes, order stages, payment tracking, and CMS views are linked together."],
+  ["04", "Improve", "After launch, workflows can be tuned from real customer conversations."],
+];
+
+const pricingRows = [
+  ["Starting price", "$50+"],
+  ["Pricing depends on", "Business scale and workflow complexity"],
+  ["Included", "Trained AI model and CMS workflow setup"],
+  ["Configured for", "Support, orders, payments, and feedback"],
+];
 
 function Icon({ name, className = "h-5 w-5" }) {
   const icons = {
-    bolt: (
-      <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
-    ),
-    heart: (
-      <path d="M20.8 4.6a5.4 5.4 0 0 0-7.6 0L12 5.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.8a5.4 5.4 0 0 0 0-7.6z" />
-    ),
-    clock: (
+    arrow: (
       <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3 2" />
-      </>
-    ),
-    user: (
-      <>
-        <path d="M20 21a8 8 0 0 0-16 0" />
-        <circle cx="12" cy="7" r="4" />
+        <path d="M7 17 17 7" />
+        <path d="M9 7h8v8" />
       </>
     ),
     bot: (
@@ -340,66 +74,62 @@ function Icon({ name, className = "h-5 w-5" }) {
         <circle cx="18" cy="20" r="1" />
       </>
     ),
-    doc: (
+    chart: (
       <>
-        <path d="M7 3h7l4 4v14H7z" />
-        <path d="M14 3v5h5M9 13h6M9 17h6" />
-      </>
-    ),
-    link: (
-      <>
-        <path d="M10 13a5 5 0 0 0 7.1.2l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1" />
-        <path d="M14 11a5 5 0 0 0-7.1-.2l-2 2a5 5 0 0 0 7.1 7.1l1.1-1.1" />
-      </>
-    ),
-    receipt: (
-      <>
-        <path d="M6 3h12v18l-2-1-2 1-2-1-2 1-2-1-2 1z" />
-        <path d="M9 8h6M9 12h6M9 16h4" />
-      </>
-    ),
-    verified: (
-      <>
-        <path d="M12 3l2.1 2.1 3-.1.9 2.8 2.5 1.7-1.3 2.7.5 3-2.7 1.3-1.7 2.5-3-.5-2.7 1.3-1.3-2.7-2.5-1.7.5-3L3.8 9.5l2.5-1.7.9-2.8 3 .1z" />
-        <path d="M8.8 12.1l2 2 4.4-4.5" />
+        <path d="M4 19V5" />
+        <path d="M4 19h16" />
+        <path d="M7 15l3-4 3 2 5-8" />
       </>
     ),
     check: (
       <>
         <circle cx="12" cy="12" r="9" />
-        <path d="M8.5 12.5l2.2 2.2 4.8-5" />
+        <path d="m8.5 12.5 2.2 2.2 4.8-5" />
       </>
     ),
-    chat: (
-      <>
-        <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
-      </>
-    ),
-    menu: (
-      <>
-        <path d="M4 7h16M4 12h16M4 17h16" />
-      </>
-    ),
-    phone: (
-      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.5 2.1L8 9.5a16 16 0 0 0 6.5 6.5l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.6.5 2.5.6A2 2 0 0 1 22 16.9z" />
-    ),
-    mic: (
-      <>
-        <rect x="9" y="3" width="6" height="11" rx="3" />
-        <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
-      </>
-    ),
-    attach: <path d="M21.4 11.6l-8.5 8.5a6 6 0 0 1-8.5-8.5l8.5-8.5a4 4 0 1 1 5.7 5.7l-8.6 8.5a2 2 0 0 1-2.8-2.8l7.8-7.8" />,
-    arrowUpRight: (
-      <>
-        <path d="M7 17L17 7" />
-        <path d="M9 7h8v8" />
-      </>
-    ),
-    smile: (
+    clock: (
       <>
         <circle cx="12" cy="12" r="9" />
-        <path d="M8 10h.01M16 10h.01M8 15c1 1.3 2.4 2 4 2s3-.7 4-2" />
+        <path d="M12 7v5l3 2" />
+      </>
+    ),
+    database: (
+      <>
+        <ellipse cx="12" cy="5" rx="7" ry="3" />
+        <path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5" />
+        <path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" />
+      </>
+    ),
+    message: <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />,
+    payment: (
+      <>
+        <rect x="3" y="5" width="18" height="14" rx="3" />
+        <path d="M3 10h18M7 15h4" />
+      </>
+    ),
+    route: (
+      <>
+        <circle cx="6" cy="6" r="3" />
+        <circle cx="18" cy="18" r="3" />
+        <path d="M9 6h3a4 4 0 0 1 0 8h-1a4 4 0 0 0 0 8h4" />
+      </>
+    ),
+    shield: (
+      <>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-5" />
+      </>
+    ),
+    spark: (
+      <>
+        <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z" />
+        <path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z" />
+      </>
+    ),
+    user: (
+      <>
+        <path d="M20 21a8 8 0 0 0-16 0" />
+        <circle cx="12" cy="7" r="4" />
       </>
     ),
   };
@@ -423,283 +153,449 @@ function Icon({ name, className = "h-5 w-5" }) {
 function Button({ children, variant = "primary", className = "" }) {
   const styles =
     variant === "secondary"
-      ? "border border-outline-variant bg-white text-on-background hover:bg-surface-container-low"
-      : "bg-ink text-white shadow-[0_10px_28px_rgba(0,0,0,0.12)] hover:bg-black";
+      ? "bg-white text-[#14231d] ring-1 ring-[#bfdbfe] hover:bg-[#f8fbff]"
+      : "bg-[#14231d] text-white shadow-[0_18px_34px_rgba(20,35,29,0.18)] hover:bg-[#243a31]";
 
   return (
-    <button
-      className={`rounded-full px-7 py-3.5 font-display text-sm font-bold tracking-tight transition duration-200 active:scale-[0.98] ${styles} ${className}`}
+    <a
+      className={`inline-flex items-center justify-center rounded-full px-6 py-3 font-display text-sm font-black tracking-[-0.01em] transition duration-200 active:scale-[0.98] ${styles} ${className}`}
+      href="#pricing"
     >
       {children}
-    </button>
+    </a>
   );
 }
 
 function Header() {
   return (
-    <header className="glass-bar fixed left-0 top-0 z-50 w-full border-b border-white/70 shadow-ambient">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 sm:px-10">
-        <a className="font-display text-lg font-extrabold tracking-[-0.04em] text-ink" href="#">
+    <header className="fixed left-0 top-0 z-50 w-full px-4 py-4">
+      <div className="mx-auto flex max-w-[1220px] items-center justify-between rounded-full border border-white/80 bg-white/70 px-5 py-3 shadow-[0_18px_60px_rgba(37,99,235,0.08)] backdrop-blur-2xl">
+        <a className="font-display text-lg font-black tracking-[-0.05em] text-[#14231d]" href="#">
           SociaFlow AI
         </a>
-        <nav className="hidden items-center gap-8 font-display text-xs font-semibold tracking-tight text-on-surface-variant md:flex">
+        <nav className="hidden items-center gap-7 font-display text-sm font-extrabold text-[#686079] md:flex">
           {navItems.map((item) => (
-            <a className="transition hover:text-ink" href={`#${item.toLowerCase()}`} key={item}>
+            <a className="transition hover:text-[#14231d]" href={`#${item.toLowerCase()}`} key={item}>
               {item}
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
-          <button className="hidden font-display text-xs font-semibold text-on-surface-variant transition hover:text-ink sm:inline-flex">
-            Log In
-          </button>
-          <Button className="px-5 py-2.5 text-xs">Request Setup</Button>
-        </div>
+        <Button className="px-5 py-2.5 text-xs">Request setup</Button>
       </div>
     </header>
   );
 }
 
-function ChatPreview() {
-  const [selectedId, setSelectedId] = useState(conversations[0].id);
-  const selectedConversation =
-    conversations.find((conversation) => conversation.id === selectedId) ?? conversations[0];
+function DashboardStat({ label, value, change }) {
+  return (
+    <div className="rounded-2xl border border-[#e5edf8] bg-white p-4">
+      <div className="mb-4 flex items-center justify-between">
+        <p className="text-xs font-semibold text-[#14231d]">{label}</p>
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-[#dbeafe] text-[10px] text-[#64748b]">i</span>
+      </div>
+      <div className="flex items-end gap-3">
+        <p className="font-display text-2xl font-black tracking-[-0.045em] text-[#14231d]">{value}</p>
+        <span className="rounded-md bg-[#eafaf7] px-2 py-1 text-[10px] font-black text-[#0f9f8f]">{change}</span>
+      </div>
+    </div>
+  );
+}
+
+function CmsDashboard() {
+  return (
+    <div className="relative mx-auto h-[430px] w-full max-w-[1180px] sm:h-[560px] lg:h-[650px]">
+      <div className="absolute left-8 top-8 h-56 w-56 rounded-full bg-[#93c5fd]/34 blur-3xl" />
+      <div className="absolute bottom-4 right-8 h-60 w-60 rounded-full bg-[#7dd3fc]/24 blur-3xl" />
+
+      <div className="absolute left-1/2 top-6 w-[92%] max-w-[920px] -translate-x-1/2 sm:top-10">
+        <div className="rounded-[1.7rem] border border-[#cbd5e1] bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1] p-2.5 shadow-[0_38px_90px_rgba(15,23,42,0.22)]">
+          <div className="overflow-hidden rounded-[1.28rem] border border-[#94a3b8]/50 bg-white">
+            <img
+              alt="SociaFlow CMS dashboard open on a laptop"
+              className="aspect-[16/10] h-auto w-full object-cover"
+              src="/images/Zyelun-automate-CMS-dashboard.png"
+            />
+          </div>
+        </div>
+        <div className="mx-auto h-4 w-[86%] rounded-b-[1.4rem] bg-gradient-to-b from-[#e2e8f0] to-[#94a3b8] shadow-[0_18px_35px_rgba(15,23,42,0.18)]">
+          <div className="mx-auto h-1.5 w-24 rounded-b-xl bg-[#cbd5e1]" />
+        </div>
+        <div className="mx-auto h-2 w-[64%] rounded-b-full bg-[#64748b]/40 blur-[1px]" />
+      </div>
+
+      <div className="absolute bottom-7 left-0 hidden w-[34%] max-w-[330px] rotate-[-4deg] sm:block">
+        <div className="rounded-[2rem] border border-[#cbd5e1] bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1] p-2.5 shadow-[0_30px_70px_rgba(15,23,42,0.2)]">
+          <div className="mb-1 flex justify-center">
+            <span className="h-1.5 w-10 rounded-full bg-[#94a3b8]" />
+          </div>
+          <div className="overflow-hidden rounded-[1.45rem] border border-[#94a3b8]/40 bg-white">
+            <img
+              alt="SociaFlow CMS dashboard open on a tablet"
+              className="aspect-[4/5] h-auto w-full object-cover object-left-top"
+              src="/images/Zyelun-automate-CMS-dashboard.png"
+            />
+          </div>
+          <div className="mx-auto mt-1.5 h-2.5 w-2.5 rounded-full border border-[#94a3b8]/60 bg-[#e2e8f0]" />
+        </div>
+      </div>
+
+      <div className="absolute bottom-0 right-2 w-[24%] min-w-[118px] max-w-[210px] rotate-[5deg]">
+        <div className="rounded-[2.2rem] border border-[#cbd5e1] bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1] p-1.5 shadow-[0_28px_70px_rgba(15,23,42,0.24)] sm:p-2">
+          <div className="overflow-hidden rounded-[1.75rem] border border-[#94a3b8]/40 bg-white">
+            <div className="absolute left-1/2 top-3 z-10 h-4 w-14 -translate-x-1/2 rounded-full bg-[#0f172a]" />
+            <img
+              alt="SociaFlow CMS dashboard open on a mobile phone"
+              className="aspect-[9/16] h-auto w-full object-cover object-left-top"
+              src="/images/Zyelun-automate-CMS-dashboard.png"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="reveal reveal-delay-2 mx-auto flex h-[520px] w-full max-w-5xl overflow-hidden rounded-[2.25rem] border border-surface-variant bg-surface-container-lowest shadow-float lg:h-[600px]">
-      <aside className="hidden w-[320px] flex-col border-r border-surface-variant bg-surface-container-low md:flex">
-        <div className="flex items-center justify-between border-b border-surface-variant bg-surface-container p-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-primary">
-            <Icon name="user" />
+    <div className="relative mx-auto w-full max-w-[1180px]">
+      <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#93c5fd]/30 blur-3xl" />
+      <div className="absolute -right-10 bottom-8 h-56 w-56 rounded-full bg-[#7dd3fc]/24 blur-3xl" />
+      <div className="relative rounded-[1.9rem] border border-white/80 bg-white/70 p-3 shadow-[0_34px_90px_rgba(37,99,235,0.14)] backdrop-blur">
+        <div className="overflow-hidden rounded-[1.55rem] border border-[#dbeafe] bg-[#f8fbff]">
+          <div className="flex h-11 items-center gap-3 border-b border-[#e5edf8] bg-[#eef4fb] px-4">
+            <div className="flex gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#c8d1dc]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#c8d1dc]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#c8d1dc]" />
+            </div>
+            <div className="hidden items-center gap-3 text-[#64748b] sm:flex">
+              <span className="text-lg leading-none">‹</span>
+              <span className="text-lg leading-none">›</span>
+            </div>
+            <div className="mx-auto hidden h-7 w-[42%] items-center justify-center rounded-md border border-[#dbeafe] bg-white text-[10px] font-bold text-[#64748b] md:flex">
+              sociaflow.cms
+            </div>
+            <div className="ml-auto flex items-center gap-3 text-xs font-bold text-[#64748b]">
+              <span>+</span>
+              <span>Export</span>
+            </div>
           </div>
-          <div className="flex items-center gap-4 text-on-surface-variant">
-            <Icon name="chat" className="h-5 w-5" />
-            <Icon name="phone" className="h-5 w-5" />
-            <Icon name="menu" className="h-5 w-5" />
-          </div>
-        </div>
-        <div className="soft-scroll flex-1 overflow-y-auto">
-          {conversations.map((conversation) => (
-            <button
-              className={`flex w-full items-center gap-3 border-b border-surface-variant p-4 text-left transition ${
-                selectedId === conversation.id ? "bg-white" : "hover:bg-surface-container"
-              }`}
-              key={conversation.id}
-              onClick={() => setSelectedId(conversation.id)}
-              type="button"
-            >
-              <div
-                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${
-                  selectedId === conversation.id
-                    ? "bg-primary-container text-primary"
-                    : "bg-surface-variant text-on-surface-variant"
-                }`}
-              >
-                <Icon name="user" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-baseline justify-between gap-2">
-                  <h4 className="truncate font-display text-sm font-bold text-on-surface">
-                    {conversation.phone}
-                  </h4>
-                  <span className="shrink-0 text-[10px] text-on-surface-variant">{conversation.time}</span>
+
+          <div className="grid min-h-[610px] lg:grid-cols-[235px_1fr]">
+            <aside className="hidden border-r border-[#e5edf8] bg-white lg:flex lg:flex-col">
+              <div className="flex h-16 items-center gap-3 border-b border-[#e5edf8] px-5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#2563eb] text-white">
+                  <Icon name="bot" className="h-4 w-4" />
                 </div>
-                <p className="truncate text-xs font-semibold text-on-surface-variant">
-                  Last seen {conversation.time}
-                </p>
+                <p className="font-display text-lg font-black tracking-[-0.05em] text-[#14231d]">SociaFlow</p>
               </div>
-            </button>
-          ))}
-        </div>
-      </aside>
+              <div className="flex-1 px-4 py-5">
+                <p className="mb-3 px-2 text-[10px] font-black uppercase tracking-[0.18em] text-[#94a3b8]">General</p>
+                {["Dashboard", "Payments", "Customers", "Messages"].map((item, index) => (
+                  <div
+                    className={`mb-1 flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-black ${
+                      index === 0 ? "bg-[#eff6ff] text-[#14231d]" : "text-[#475569]"
+                    }`}
+                    key={item}
+                  >
+                    <span>{item}</span>
+                    {item === "Messages" ? <span className="rounded-md bg-white px-2 py-0.5 text-[10px]">8</span> : null}
+                  </div>
+                ))}
+                <p className="mb-3 mt-6 px-2 text-[10px] font-black uppercase tracking-[0.18em] text-[#94a3b8]">Tools</p>
+                {["Products", "Invoices", "Analytics", "Automation"].map((item) => (
+                  <div className="mb-1 flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-black text-[#475569]" key={item}>
+                    <span>{item}</span>
+                    {item === "Automation" ? <span className="rounded-md bg-[#eff6ff] px-2 py-0.5 text-[10px] text-[#1d4ed8]">AI</span> : null}
+                  </div>
+                ))}
+                <p className="mb-3 mt-6 px-2 text-[10px] font-black uppercase tracking-[0.18em] text-[#94a3b8]">Support</p>
+                {["Settings", "Security", "Help"].map((item) => (
+                  <div className="mb-1 rounded-xl px-3 py-2.5 text-xs font-black text-[#475569]" key={item}>
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <div className="m-4 rounded-2xl border border-[#e5edf8] bg-[#f8fbff] p-4">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-xl bg-[#22c7c8]" />
+                  <div>
+                    <p className="text-xs font-black text-[#14231d]">Team</p>
+                    <p className="text-xs text-[#64748b]">Operations</p>
+                  </div>
+                </div>
+                <button className="w-full rounded-xl border border-[#dbeafe] bg-white py-2 text-xs font-black text-[#14231d]">
+                  Upgrade plan
+                </button>
+              </div>
+            </aside>
 
-      <section className="relative flex flex-1 flex-col bg-[#f0f2f5] text-left">
-        <div className="soft-scroll flex gap-2 overflow-x-auto border-b border-surface-variant bg-surface-container-low px-4 py-3 md:hidden">
-          {conversations.map((conversation) => (
-            <button
-              className={`shrink-0 rounded-full px-3 py-2 text-xs font-bold transition ${
-                selectedId === conversation.id
-                  ? "bg-primary text-white"
-                  : "bg-white text-on-surface-variant"
-              }`}
-              key={conversation.id}
-              onClick={() => setSelectedId(conversation.id)}
-              type="button"
-            >
-              {conversation.phone}
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center gap-4 border-b border-surface-variant bg-surface-container p-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-primary">
-            <Icon name="user" />
-          </div>
-          <div className="min-w-0">
-            <h4 className="truncate font-display text-sm font-bold text-on-surface">
-              {selectedConversation.phone}
-            </h4>
-            <p className="truncate text-xs font-semibold text-primary">
-              Last seen {selectedConversation.time}
-            </p>
-          </div>
-        </div>
-
-        <div className="mint-wash soft-scroll flex-1 space-y-3 overflow-y-auto p-4 sm:p-6">
-          {selectedConversation.messages.map((message, index) => {
-            const isAi = message.from === "ai";
-
-            return (
-              <div className={`flex ${isAi ? "justify-end" : "justify-start"}`} key={`${selectedConversation.id}-${index}`}>
-                <div
-                  className={`max-w-[88%] rounded-3xl p-3 shadow-sm md:max-w-[76%] ${
-                    isAi ? "rounded-tr-md bg-[#d9fdd3]" : "rounded-tl-md bg-white"
-                  }`}
-                >
-                  <p className="text-xs leading-5 text-on-surface sm:text-sm">{message.text}</p>
-                  {message.card ? (
-                    <div className="mt-2 rounded-2xl border border-surface-variant bg-white p-2.5">
-                      <div className="flex gap-3">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-ink to-on-surface-variant text-white">
-                          <Icon name="cart" className="h-6 w-6" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="font-display text-xs font-black text-on-surface sm:text-sm">{message.card.title}</p>
-                          <p className="text-xs font-bold text-ink">{message.card.subtitle}</p>
-                          <p className="text-[11px] leading-4 text-on-surface-variant">{message.card.meta}</p>
-                        </div>
-                      </div>
-                      <button className="mt-2 w-full rounded-full border border-outline-variant py-1.5 text-[11px] font-black text-ink">
-                        {message.card.action}
-                      </button>
-                    </div>
-                  ) : null}
-                  <div className={`mt-2 flex items-center gap-1 text-primary ${isAi ? "justify-end" : "justify-start"}`}>
-                    <span className="text-[10px] text-on-surface-variant">{message.time}</span>
-                    {isAi ? <Icon name="check" className="h-4 w-4" /> : null}
+            <main className="min-w-0">
+              <div className="flex h-16 items-center gap-4 border-b border-[#e5edf8] bg-white px-5">
+                <div className="flex h-8 min-w-0 flex-1 items-center rounded-xl border border-[#e5edf8] bg-white px-3 text-xs font-semibold text-[#64748b] sm:max-w-[260px]">
+                  Search workflows
+                </div>
+                <div className="ml-auto flex items-center gap-3 text-xs font-black text-[#64748b]">
+                  <span className="hidden sm:inline">Notifications</span>
+                  <div className="h-8 w-8 rounded-full bg-[#e2e8f0]" />
+                  <div className="hidden sm:block">
+                    <p className="text-[#14231d]">UrbanThreads</p>
+                    <p className="font-semibold text-[#94a3b8]">Business</p>
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
 
-        <div className="flex items-center gap-4 bg-surface-container p-4">
-          <Icon name="smile" className="h-5 w-5 text-on-surface-variant" />
-          <Icon name="attach" className="h-5 w-5 text-on-surface-variant" />
-          <div className="flex-1 rounded-2xl border border-surface-variant bg-white px-4 py-3 text-sm text-on-surface-variant">
-            Type a message
+              <div className="p-5">
+                <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <h3 className="font-display text-2xl font-black tracking-[-0.05em] text-[#14231d]">Dashboard</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {["Oct 18 - Nov 18", "Monthly", "Filter", "Export"].map((item) => (
+                      <span className="rounded-lg border border-[#e5edf8] bg-white px-3 py-2 text-[11px] font-bold text-[#64748b]" key={item}>
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mb-4 grid gap-4 md:grid-cols-3">
+                  {cmsStats.slice(0, 3).map(([label, value, change]) => (
+                    <DashboardStat change={change} key={label} label={label} value={value} />
+                  ))}
+                </div>
+
+                <div className="grid gap-4 xl:grid-cols-[1.25fr_0.85fr]">
+                  <section className="rounded-2xl border border-[#e5edf8] bg-white p-5">
+                    <div className="mb-5 flex items-center justify-between">
+                      <div>
+                        <p className="mb-2 text-xs font-semibold text-[#14231d]">Sales overview</p>
+                        <p className="font-display text-2xl font-black tracking-[-0.05em] text-[#14231d]">$9,257.51</p>
+                        <p className="mt-1 text-xs text-[#64748b]"><span className="font-black text-[#0f9f8f]">15.8%</span> + $143.50 increased</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="rounded-lg border border-[#e5edf8] px-3 py-2 text-[11px] font-bold text-[#64748b]">Filter</span>
+                        <span className="rounded-lg border border-[#e5edf8] px-3 py-2 text-[11px] font-bold text-[#64748b]">Sort</span>
+                      </div>
+                    </div>
+                    <div className="relative flex h-52 items-end justify-between gap-6 overflow-hidden px-5 pb-8">
+                      <svg className="absolute inset-x-10 bottom-16 top-16 h-28 w-[80%] text-[#dbeafe]" fill="none" preserveAspectRatio="none" viewBox="0 0 480 130">
+                        <path d="M20 52 C130 42 170 82 240 84 C318 86 360 38 460 28" stroke="currentColor" strokeWidth="12" />
+                        <path d="M20 82 C130 78 170 100 240 100 C320 98 360 64 460 56" stroke="currentColor" strokeWidth="12" />
+                        <path d="M20 112 C128 108 172 118 240 116 C320 114 360 96 460 88" stroke="currentColor" strokeWidth="12" />
+                      </svg>
+                      {chartGroups.map(([amount, bars], groupIndex) => (
+                        <div className="relative z-10 flex w-28 flex-col items-center" key={amount}>
+                          <p className="mb-3 text-xs font-black text-[#14231d]">{amount}</p>
+                          <div className="flex h-32 w-full flex-col justify-end gap-1.5">
+                            {bars.map((height, index) => (
+                              <span
+                                className={`rounded-md ${index % 2 === 0 ? "bg-[#2563eb]" : "bg-[#22c7c8]"}`}
+                                key={`${amount}-${height}`}
+                                style={{ height: `${height / 4}px` }}
+                              />
+                            ))}
+                          </div>
+                          <p className="mt-3 text-xs text-[#64748b]">{["Oct", "Nov", "Dec"][groupIndex]}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex justify-center gap-4 text-[10px] font-bold text-[#64748b]">
+                      {["Support", "Orders", "Payments", "Feedback"].map((item, index) => (
+                        <span className="inline-flex items-center gap-1" key={item}>
+                          <span className={`h-2 w-2 rounded-full ${index % 2 === 0 ? "bg-[#2563eb]" : "bg-[#22c7c8]"}`} />
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </section>
+
+                  <section className="rounded-2xl border border-[#e5edf8] bg-white p-5">
+                    <div className="mb-6 flex items-center justify-between">
+                      <div>
+                        <p className="mb-2 text-xs font-semibold text-[#14231d]">Total customers</p>
+                        <p className="font-display text-2xl font-black tracking-[-0.05em] text-[#14231d]">24,473</p>
+                        <p className="mt-1 text-xs text-[#64748b]"><span className="font-black text-[#0f9f8f]">8.3%</span> +749 increased</p>
+                      </div>
+                      <span className="rounded-lg border border-[#e5edf8] px-3 py-2 text-[11px] font-bold text-[#64748b]">Weekly</span>
+                    </div>
+                    <div className="flex h-44 items-end justify-between gap-3">
+                      {[28, 48, 124, 26, 70, 52, 88].map((height, index) => (
+                        <div className="flex flex-1 flex-col items-center gap-2" key={index}>
+                          <div
+                            className={`w-full rounded-lg ${index === 2 ? "bg-gradient-to-t from-[#1d4ed8] to-[#60a5fa]" : "bg-[#edf2f8]"}`}
+                            style={{ height }}
+                          />
+                          <span className="text-[10px] text-[#64748b]">{["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][index]}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                </div>
+
+                <div className="mt-4 grid gap-4 xl:grid-cols-[0.8fr_1.2fr]">
+                  <section className="rounded-2xl border border-[#e5edf8] bg-white p-5">
+                    <div className="mb-5 flex items-center justify-between">
+                      <p className="text-xs font-semibold text-[#14231d]">Sales distribution</p>
+                      <span className="rounded-lg border border-[#e5edf8] px-3 py-2 text-[11px] font-bold text-[#64748b]">Monthly</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-3 text-xs">
+                      {["Website", "Mobile App", "Other"].map((item, index) => (
+                        <div key={item}>
+                          <p className="mb-2 text-[#64748b]">{item}</p>
+                          <p className="font-display text-base font-black text-[#14231d]">{["$374.82", "$241.60", "$213.42"][index]}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mx-auto mt-6 h-28 w-28 rounded-full bg-[conic-gradient(#2563eb_0_38%,#22c7c8_38%_72%,#e5edf8_72%_100%)] p-5">
+                      <div className="h-full w-full rounded-full bg-white" />
+                    </div>
+                  </section>
+
+                  <section className="rounded-2xl border border-[#e5edf8] bg-white p-5">
+                    <div className="mb-5 flex items-center justify-between">
+                      <p className="text-xs font-semibold text-[#14231d]">List of integrations</p>
+                      <span className="text-xs font-black text-[#1d4ed8]">See all</span>
+                    </div>
+                    <div className="space-y-4">
+                      {[
+                        ["Stripe", "Payment", "40%", "$650.00"],
+                        ["Shopify", "Store", "80%", "$720.50"],
+                        ["WhatsApp", "Channel", "62%", "$432.25"],
+                      ].map(([app, type, rate, profit]) => (
+                        <div className="grid grid-cols-[1fr_0.8fr_0.8fr_0.8fr] items-center gap-3 text-xs" key={app}>
+                          <p className="font-black text-[#14231d]">{app}</p>
+                          <p className="text-[#64748b]">{type}</p>
+                          <div className="h-1.5 rounded-full bg-[#e5edf8]">
+                            <div className="h-1.5 rounded-full bg-[#2563eb]" style={{ width: rate }} />
+                          </div>
+                          <p className="text-right font-bold text-[#64748b]">{profit}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </main>
           </div>
-          <Icon name="mic" className="h-5 w-5 text-on-surface-variant" />
         </div>
-      </section>
+      </div>
     </div>
   );
 }
 
-function ProductCard() {
+function Hero() {
   return (
-    <div className="rounded-panel border border-surface-variant bg-surface-container-lowest p-5 shadow-ambient sm:p-card-pad">
-      <div className="relative mb-6 aspect-video overflow-hidden rounded-card bg-gradient-to-br from-white via-surface-container-low to-primary-container/35 p-6">
-        <div className="absolute left-8 top-8 w-36 rounded-2xl border border-surface-variant bg-white/90 p-3 shadow-ambient">
-          {["WhatsApp", "Instagram", "Messenger"].map((item, index) => (
-            <div className="mb-2 flex items-center gap-2 last:mb-0" key={item}>
-              <span className={`h-2.5 w-2.5 rounded-full ${index === 0 ? "bg-primary" : "bg-surface-dim"}`} />
-              <span className="text-[10px] font-semibold text-on-surface-variant">{item}</span>
-            </div>
-          ))}
-        </div>
-        <div className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-white shadow-teal">
-          <Icon name="bot" className="h-9 w-9" />
-        </div>
-        <div className="absolute right-8 top-8 w-44 rounded-2xl border border-surface-variant bg-white p-4 shadow-ambient">
-          <p className="mb-2 text-[10px] font-bold text-primary">New lead captured</p>
-          <div className="h-2 rounded-full bg-surface-container" />
-          <div className="mt-2 h-2 w-3/4 rounded-full bg-surface-container" />
-        </div>
-        <div className="absolute bottom-8 right-10 grid gap-3">
-          {["Reply generated", "Payment link ready", "CRM updated"].map((item) => (
-            <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-ambient" key={item}>
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-container text-primary">
-                <Icon name="check" className="h-4 w-4" />
-              </span>
-              <span className="text-xs font-bold text-on-surface">{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex items-center justify-between rounded-card bg-surface p-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-primary">
-            <Icon name="chat" />
-          </div>
-          <div>
-            <p className="font-display text-sm font-bold">Active Conversations</p>
-            <p className="text-xs text-on-surface-variant">Across 3 platforms</p>
+    <section className="relative overflow-hidden bg-[#f7fbff] px-5 pb-20 pt-36 sm:px-10 sm:pt-40">
+      <div className="absolute left-[-8rem] top-[-6rem] h-[26rem] w-[26rem] rounded-full bg-[#93c5fd]/35 blur-3xl" />
+      <div className="absolute right-[-8rem] top-24 h-[28rem] w-[28rem] rounded-full bg-[#d577aa]/22 blur-3xl" />
+      <div className="relative mx-auto max-w-[1440px]">
+        <div className="mx-auto mb-12 max-w-5xl text-center">
+          <h1 className="mx-auto mb-6 max-w-5xl font-display text-5xl font-black leading-[1.02] tracking-[-0.06em] text-[#14231d] sm:text-6xl lg:text-[84px]">
+            Run your social business from one intelligent CMS.
+          </h1>
+          <p className="mx-auto mb-8 max-w-2xl text-base leading-8 text-[#625a73] sm:text-lg">
+            We configure a trained AI model to answer questions, create orders, guide payments, and collect feedback across the channels your customers already use.
+          </p>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button>Request setup</Button>
+            <a
+              className="inline-flex items-center gap-2 font-display text-sm font-black text-[#14231d] underline underline-offset-4"
+              href="#pricing"
+            >
+              See pricing
+              <Icon name="arrow" className="h-4 w-4" />
+            </a>
           </div>
         </div>
-        <span className="font-display text-2xl font-bold text-primary">1,248</span>
-      </div>
-    </div>
-  );
-}
-
-function FeatureIntro() {
-  return (
-    <section className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-12 px-5 py-section-gap sm:px-10 lg:grid-cols-2 lg:gap-16">
-      <div className="reveal">
-        <h2 className="mb-6 max-w-xl font-display text-3xl font-bold tracking-tight text-ink sm:text-[32px] sm:leading-tight">
-          Automate Every Social Conversation from Support to Sale
-        </h2>
-        <p className="mb-8 max-w-2xl text-base leading-8 text-on-surface-variant sm:text-lg">
-          SociaFlow AI helps businesses stay reachable around the clock by handling customer support,
-          product questions, order placement, payments, and feedback directly through social media. Each AI
-          model is trained around your business type, workflows, and customer journey, so conversations move
-          naturally from first question to completed order.
-        </p>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-          {["24/7 Customer Support", "Custom AI Workflows"].map((title) => (
-            <div className="flex items-center gap-3" key={title}>
-              <Icon name="check" className="h-4 w-4 shrink-0 text-primary" />
-              <h3 className="font-display text-sm font-bold sm:text-base">{title}</h3>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex items-center justify-center">
-        <img
-          alt="Simplified SociaFlow AI automation illustration showing AI connecting social conversations to questions, orders, payments, and feedback."
-          className="h-auto w-full max-w-[760px] object-contain"
-          src="/social-automation-illustration-simple.png"
-        />
+        <CmsDashboard />
       </div>
     </section>
   );
 }
 
-function Benefits() {
+function Intro() {
   return (
-    <section className="bg-surface py-section-gap" id="features">
-      <div className="mx-auto max-w-[1180px] px-5 sm:px-10">
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="mb-4 font-display text-3xl font-bold tracking-tight text-ink sm:text-[32px]">
-            Why Modern Teams Choose SociaFlow
+    <section className="px-5 py-20 sm:px-10">
+      <div className="mx-auto grid max-w-[1180px] gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div className="relative min-h-[620px] overflow-visible bg-transparent p-0">
+          <div className="absolute -bottom-10 -top-10 left-1/2 w-[82%] -translate-x-1/2 bg-[linear-gradient(#dbeafe_1px,transparent_1px),linear-gradient(90deg,#dbeafe_1px,transparent_1px)] bg-[size:32px_32px] opacity-45 [mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%),linear-gradient(180deg,transparent_0%,black_10%,black_90%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%),linear-gradient(180deg,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-composite:source-in]" />
+          <div className="relative mx-auto grid max-w-[420px] grid-cols-2 gap-3 sm:gap-4">
+            {[
+              [
+                "Question",
+                "Understands customer intent, checks approved knowledge, and answers product, delivery, and policy questions.",
+                "mr-2 h-[280px]",
+              ],
+              [
+                "Order",
+                "Collects product choices, contact details, delivery notes, and order preferences before creating records.",
+                "ml-2 mt-[116px] h-[280px]",
+              ],
+              [
+                "Payment",
+                "Guides payment steps, records confirmation details, and keeps receipts ready for team review.",
+                "mr-2 -mt-[96px] h-[280px]",
+              ],
+              [
+                "Feedback",
+                "Tags reviews, complaints, follow-ups, and service signals so teams can improve.",
+                "ml-2 mt-5 h-[280px]",
+              ],
+            ].map(([title, body, position], index) => (
+              <div className={`rounded-[1.75rem] bg-[#dbeafe] p-5 text-[#14231d] shadow-[0_18px_45px_rgba(37,99,235,0.08)] ${position}`} key={title}>
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white font-display text-sm font-black text-[#2563eb] shadow-[0_10px_24px_rgba(37,99,235,0.12)]">
+                    {index + 1}
+                  </div>
+                  <p className="font-display text-lg font-black tracking-[-0.03em]">{title}</p>
+                </div>
+                <p className="text-sm leading-7 text-[#475569]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-0 bg-transparent p-0 shadow-none">
+          <h2 className="mb-6 max-w-xl font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
+            Every customer conversation becomes a trackable business action.
           </h2>
-          <p className="text-base leading-8 text-on-surface-variant sm:text-lg">
-            Unlock unparalleled efficiency without sacrificing the personal touch your customers expect.
+          <p className="mb-8 max-w-2xl text-base leading-8 text-[#6f667f] sm:text-lg">
+            SociaFlow is not a self-serve chatbot template. We configure the model, CMS views, and workflow rules around how your business sells, supports, collects payments, and follows up with customers.
+          </p>
+          <div className="flex flex-wrap gap-x-7 gap-y-3">
+            {["Always-on support", "Custom workflow", "CMS visibility"].map((item) => (
+              <div className="inline-flex items-center gap-2" key={item}>
+                <Icon name="check" className="h-5 w-5 text-[#2563eb]" />
+                <p className="font-display text-sm font-black text-[#14231d]">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  return (
+    <section className="px-5 py-20 sm:px-10" id="services">
+      <div className="mx-auto max-w-[1180px]">
+        <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1fr] lg:items-end">
+          <h2 className="font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
+            Built for the work that happens inside social DMs.
+          </h2>
+          <p className="text-base leading-8 text-[#6f667f] sm:text-lg">
+            The dashboard gives your team a clear operational layer while the trained AI handles routine steps in the background.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-gutter md:grid-cols-3">
-          {benefits.map((benefit, index) => (
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {serviceCards.map((item) => (
             <article
-              className="reveal rounded-panel border border-surface-variant bg-surface-container-lowest p-card-pad text-center shadow-ambient transition duration-300 hover:-translate-y-1 hover:shadow-float"
-              key={benefit.title}
-              style={{ animationDelay: `${index * 90}ms` }}
+              className="group rounded-[2rem] bg-white p-6 shadow-[0_18px_45px_rgba(37,99,235,0.07)] transition duration-200 hover:-translate-y-1"
+              key={item.title}
             >
-              <div className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full ${benefit.tone}`}>
-                <Icon name={benefit.icon} className="h-8 w-8" />
+              <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eff6ff] text-[#1d4ed8] transition group-hover:bg-[#2563eb] group-hover:text-white">
+                <Icon name={item.icon} />
               </div>
-              <h3 className="mb-3 font-display text-2xl font-semibold tracking-tight">{benefit.title}</h3>
-              <p className="text-sm leading-7 text-on-surface-variant">{benefit.body}</p>
+              <h3 className="mb-3 font-display text-xl font-black tracking-[-0.03em] text-[#14231d]">{item.title}</h3>
+              <p className="text-sm leading-7 text-[#6f667f]">{item.body}</p>
             </article>
           ))}
         </div>
@@ -708,196 +604,109 @@ function Benefits() {
   );
 }
 
-function PlatformSupport() {
-  const platforms = [
-    ["WhatsApp", "/social-logos/whatsapp.svg", "left-[7%] top-[18%] h-16 w-16 rotate-[-10deg]"],
-    ["Instagram", "/social-logos/instagram.svg", "left-1/2 top-[4%] h-[4.75rem] w-[4.75rem] -translate-x-1/2 rotate-[7deg]"],
-    ["Messenger", "/social-logos/messenger.svg", "right-[8%] top-[18%] h-16 w-16 rotate-[11deg]"],
-    ["Facebook", "/social-logos/facebook.svg", "left-[10%] bottom-[15%] h-[4.5rem] w-[4.5rem] rotate-[6deg]"],
-    ["TikTok", "/social-logos/tiktok.svg", "left-1/2 bottom-[4%] h-16 w-16 -translate-x-1/2 rotate-[-9deg]"],
-    ["Telegram", "/social-logos/telegram.svg", "right-[9%] bottom-[15%] h-[4.5rem] w-[4.5rem] rotate-[8deg]"],
-  ];
-
+function Channels() {
   return (
-    <section className="mx-auto max-w-[1180px] px-5 py-section-gap sm:px-10">
-      <div className="grid gap-10 rounded-[2.5rem] border border-surface-variant bg-surface-container-lowest p-6 shadow-ambient lg:grid-cols-[0.9fr_1.1fr] lg:p-10">
-        <div className="relative min-h-[320px] overflow-hidden">
-          <svg className="absolute inset-0 h-full w-full text-primary/35" fill="none" viewBox="0 0 520 320">
-            <path d="M260 160 C180 118 120 96 70 82" stroke="currentColor" strokeDasharray="6 8" strokeWidth="2" />
-            <path d="M260 160 C258 92 258 54 260 38" stroke="currentColor" strokeDasharray="6 8" strokeWidth="2" />
-            <path d="M260 160 C340 116 396 96 452 82" stroke="currentColor" strokeDasharray="6 8" strokeWidth="2" />
-            <path d="M260 160 C178 202 112 226 78 252" stroke="currentColor" strokeDasharray="6 8" strokeWidth="2" />
-            <path d="M260 160 C260 218 260 252 260 286" stroke="currentColor" strokeDasharray="6 8" strokeWidth="2" />
-            <path d="M260 160 C342 204 408 226 452 252" stroke="currentColor" strokeDasharray="6 8" strokeWidth="2" />
+    <section className="px-5 py-20 sm:px-10" id="channels">
+      <div className="mx-auto grid max-w-[1180px] gap-10 rounded-[2.5rem] bg-white p-6 shadow-[0_24px_70px_rgba(37,99,235,0.08)] lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-10">
+        <div>
+          <h2 className="mb-5 max-w-xl font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
+            Connect the channels your customers already trust.
+          </h2>
+          <p className="max-w-2xl text-base leading-8 text-[#6f667f] sm:text-lg">
+            We support the social platforms businesses use for customer questions, order requests, receipts, and follow-ups.
+          </p>
+        </div>
+        <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] bg-[#f8fbff]">
+          <svg className="absolute inset-0 h-full w-full text-[#2563eb]/35" fill="none" viewBox="0 0 560 360">
+            <path d="M280 180 C184 112 118 90 68 70" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
+            <path d="M280 180 C280 92 280 56 280 34" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
+            <path d="M280 180 C376 112 444 90 492 70" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
+            <path d="M280 180 C184 226 124 256 78 292" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
+            <path d="M280 180 C280 238 280 292 280 326" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
+            <path d="M280 180 C376 226 438 256 492 292" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
           </svg>
-          <div className="absolute left-1/2 top-1/2 z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-ink font-display text-lg font-black text-white shadow-float">
+          <div className="absolute left-1/2 top-1/2 z-10 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#14231d] font-display text-xl font-black text-white shadow-[0_22px_50px_rgba(20,35,29,0.2)]">
             AI
           </div>
-          {platforms.map(([name, src, position]) => (
-            <img
-              alt={`${name} logo`}
-              className={`absolute z-20 rounded-[1.5rem] shadow-[0_18px_36px_rgba(15,23,42,0.14)] transition duration-300 hover:-translate-y-1 hover:scale-105 ${position}`}
-              key={name}
-              src={src}
-            />
+          {[
+            "left-[8%] top-[14%] rotate-[-10deg]",
+            "left-1/2 top-[5%] -translate-x-1/2 rotate-[6deg]",
+            "right-[8%] top-[14%] rotate-[11deg]",
+            "left-[10%] bottom-[13%] rotate-[7deg]",
+            "left-1/2 bottom-[5%] -translate-x-1/2 rotate-[-8deg]",
+            "right-[10%] bottom-[13%] rotate-[8deg]",
+          ].map((position, index) => (
+            <div
+              className={`absolute z-20 flex h-20 w-20 items-center justify-center rounded-[1.6rem] bg-white shadow-[0_18px_40px_rgba(37,99,235,0.12)] ${position}`}
+              key={channelLogos[index][0]}
+            >
+              <img alt={`${channelLogos[index][0]} logo`} className="h-11 w-11" src={channelLogos[index][1]} />
+            </div>
           ))}
-        </div>
-
-        <div className="flex flex-col justify-center">
-          <h2 className="mb-5 max-w-xl font-display text-3xl font-bold tracking-tight text-ink sm:text-[32px]">
-            Built for the social channels your customers already use.
-          </h2>
-          <p className="max-w-2xl text-base leading-8 text-on-surface-variant sm:text-lg">
-            We configure SociaFlow around the platforms where your business receives questions, orders,
-            payment confirmations, and feedback, so customers can reach you without changing how they already communicate.
-          </p>
         </div>
       </div>
     </section>
-  );
-}
-
-function WorkflowCard({ item, className = "" }) {
-  return (
-    <article
-      className={`relative rounded-card bg-surface-container-lowest p-6 shadow-ambient ${
-        item.featured ? "border-2 border-primary shadow-teal" : item.active ? "border border-primary/25" : "border border-surface-variant"
-      } ${className}`}
-    >
-      <span
-        className={`absolute -left-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full font-body text-sm font-black ${
-          item.active ? "bg-primary text-white" : "bg-ink text-white"
-        }`}
-      >
-        {item.step}
-      </span>
-      <div className={item.featured ? "mb-3 flex flex-col items-center gap-3 text-center" : "mb-3 flex items-center gap-3"}>
-        <span
-          className={`flex h-10 w-10 items-center justify-center rounded-full ${
-            item.active ? "bg-primary-container text-primary" : "bg-surface text-secondary"
-          }`}
-        >
-          <Icon name={item.icon} />
-        </span>
-        <h3 className="font-display text-base font-bold">{item.title}</h3>
-      </div>
-      <p
-        className={`rounded-soft p-3 text-sm leading-6 text-on-surface-variant ${
-          item.featured ? "bg-transparent p-0 text-center" : item.active ? "border border-primary-container bg-primary-container/20" : "bg-surface"
-        }`}
-      >
-        {item.body}
-      </p>
-    </article>
   );
 }
 
 function Workflow() {
-  const phases = [
-    {
-      title: "Map Your Workflow",
-      body: "We study your products, customer questions, order flow, payment process, and support rules before anything goes live.",
-      meta: "Discovery",
-    },
-    {
-      title: "Train the AI Model",
-      body: "Your AI assistant is trained to answer business-specific questions, guide customers, collect order details, and respond in your tone.",
-      meta: "Training",
-    },
-    {
-      title: "Connect Social Channels",
-      body: "We connect the assistant to the channels your customers already use, then automate support, payments, orders, and feedback handling.",
-      meta: "Integration",
-    },
-    {
-      title: "Launch and Improve",
-      body: "After launch, conversations can be reviewed and refined so the automation keeps adapting to your environment and customer behavior.",
-      meta: "Optimization",
-    },
-  ];
-
   return (
-    <section className="mx-auto max-w-[1180px] px-5 py-section-gap sm:px-10" id="workflow">
-      <div className="mx-auto mb-14 max-w-3xl text-center">
-        <h2 className="mb-4 font-display text-3xl font-bold tracking-tight text-ink sm:text-[32px]">
-          A Setup Process Built Around Your Business
-        </h2>
-        <p className="text-base leading-8 text-on-surface-variant sm:text-lg">
-          SociaFlow is configured for each client instead of shipped as a one-size-fits-all product.
-          We adapt the model to your business type, customer journey, and operational workflow.
-        </p>
-      </div>
-
-      <div className="rounded-[2.5rem] border border-surface-variant bg-surface-container-lowest p-4 shadow-ambient sm:p-6 lg:p-8">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:gap-6">
-          <div className="relative overflow-hidden rounded-[2rem] bg-ink p-8 text-white">
-            <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/40 blur-3xl" />
-            <div className="absolute -bottom-20 left-8 h-48 w-48 rounded-full bg-tertiary-container/20 blur-3xl" />
-            <div className="relative z-10">
-              <h3 className="mb-5 font-display text-3xl font-black tracking-tight">
-                We build the automation to match how you already operate.
-              </h3>
-              <p className="text-sm leading-7 text-inverse-on-surface/80">
-                The result is a trained AI workflow that can answer questions, create orders, handle
-                payment steps, and collect feedback without forcing your team into a generic template.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {phases.map((phase, index) => (
-              <article
-                className="relative rounded-[1.75rem] border border-surface-variant bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:shadow-float"
-                key={phase.title}
-              >
-                <span className="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-black text-white">
-                  {index + 1}
-                </span>
-                <h3 className="mb-3 font-display text-xl font-black tracking-tight text-ink">{phase.title}</h3>
-                <p className="text-sm leading-7 text-on-surface-variant">{phase.body}</p>
-              </article>
-            ))}
-          </div>
+    <section className="px-5 py-20 sm:px-10" id="workflow">
+      <div className="mx-auto max-w-[1180px] rounded-[2.75rem] bg-[#14231d] p-6 text-white shadow-[0_28px_80px_rgba(20,35,29,0.18)] lg:p-10">
+        <div className="mb-12 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+          <h2 className="font-display text-4xl font-black tracking-[-0.05em] sm:text-5xl">
+            Configured first. Automated second.
+          </h2>
+          <p className="text-base leading-8 text-white/62 sm:text-lg">
+            Because every client has different products, rules, channels, and payment flows, we set up SociaFlow around your real operating environment.
+          </p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-4">
+          {workflowSteps.map(([step, title, body]) => (
+            <article className="rounded-[2rem] bg-white/8 p-6 ring-1 ring-white/10" key={step}>
+              <p className="mb-8 font-display text-5xl font-black tracking-[-0.06em] text-[#bfdbfe]">{step}</p>
+              <h3 className="mb-4 font-display text-xl font-black tracking-[-0.03em]">{title}</h3>
+              <p className="text-sm leading-7 text-white/62">{body}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function CTA() {
+function Pricing() {
   return (
-    <section className="mx-auto mb-20 max-w-[1180px] px-5 py-section-gap sm:px-10" id="pricing">
-      <div className="relative overflow-hidden rounded-[2rem] bg-surface-container-highest px-6 py-16 sm:rounded-hero sm:p-16">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(178,223,219,0.45),transparent_48%),radial-gradient(ellipse_at_bottom_left,_rgba(255,204,174,0.35),transparent_46%)]" />
-        <div className="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div>
-            <h2 className="mb-6 max-w-xl font-display text-3xl font-bold tracking-tight text-ink sm:text-[32px]">
-              Pricing starts at $50 and scales with your workflow.
-            </h2>
-            <p className="mb-8 max-w-2xl text-base leading-8 text-on-surface-variant sm:text-lg">
-              SociaFlow is configured after purchase to work inside your business environment. Final pricing
-              depends on business scale, connected channels, automation depth, and workflow complexity.
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Button className="w-full sm:w-auto">Request a Quote</Button>
-              <Button className="w-full sm:w-auto" variant="secondary">
-                Talk to Sales
-              </Button>
-            </div>
+    <section className="px-5 py-20 sm:px-10" id="pricing">
+      <div className="mx-auto grid max-w-[1180px] gap-10 overflow-hidden rounded-[2.75rem] bg-[#f8fbff] p-6 shadow-[0_24px_70px_rgba(37,99,235,0.08)] lg:grid-cols-[1.05fr_0.95fr] lg:p-10">
+        <div>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 font-display text-xs font-black text-[#1d4ed8]">
+            <Icon name="clock" className="h-4 w-4" />
+            Custom implementation
           </div>
-
-          <div className="rounded-[2rem] border border-white/70 bg-white/70 p-5 shadow-ambient backdrop-blur">
-            {[
-              ["Starting setup", "$50+"],
-              ["Pricing depends on", "Scale and workflow complexity"],
-              ["Included", "Trained AI model for your workflow"],
-              ["Configured for", "Support, orders, payments, and feedback"],
-            ].map(([label, value]) => (
-              <div className="flex items-start justify-between gap-4 border-b border-surface-variant py-4 last:border-b-0" key={label}>
-                <span className="text-sm font-semibold text-on-surface-variant">{label}</span>
-                <span className="max-w-[14rem] text-right font-display text-sm font-black text-ink">{value}</span>
-              </div>
-            ))}
+          <h2 className="mb-6 max-w-xl font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
+            Starting at $50, then scaled to your workflow.
+          </h2>
+          <p className="mb-8 max-w-2xl text-base leading-8 text-[#6f667f] sm:text-lg">
+            Clients pay for setup and configuration before launch. Final pricing varies based on business scale, workflow complexity, number of channels, and automation depth.
+          </p>
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Button>Request a quote</Button>
+            <Button variant="secondary">Discuss workflow</Button>
+          </div>
+        </div>
+        <div className="rounded-[2rem] bg-white p-5 shadow-[0_14px_34px_rgba(37,99,235,0.07)]">
+          {pricingRows.map(([label, value]) => (
+            <div className="flex items-start justify-between gap-4 border-b border-[#dbeafe] py-4 last:border-b-0" key={label}>
+              <span className="text-sm font-bold text-[#6f667f]">{label}</span>
+              <span className="max-w-[14rem] text-right font-display text-sm font-black text-[#14231d]">{value}</span>
+            </div>
+          ))}
+          <div className="mt-5 rounded-[1.5rem] bg-[#14231d] p-5 text-white">
+            <p className="mb-2 font-display text-lg font-black tracking-[-0.03em]">What you get</p>
+            <p className="text-sm leading-7 text-white/62">
+              A trained AI model, connected social workflows, CMS visibility, and a setup shaped around your business environment.
+            </p>
           </div>
         </div>
       </div>
@@ -907,25 +716,10 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="w-full rounded-t-[40px] border-t border-surface-variant bg-surface-container-low">
-      <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-10 px-5 py-16 sm:px-10 md:grid-cols-2">
-        <div>
-          <div className="mb-4 font-display text-lg font-black tracking-tight text-ink">SociaFlow AI</div>
-          <p className="font-display text-sm text-on-surface-variant">
-            &copy; 2026 SociaFlow AI. Effortless intelligence for modern teams.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-6 md:justify-end">
-          {["Privacy Policy", "Terms of Service", "Cookie Policy", "Contact Us", "Documentation", "Status"].map((item) => (
-            <a
-              className="font-display text-sm text-on-surface-variant opacity-80 transition hover:text-primary hover:opacity-100"
-              href="#"
-              key={item}
-            >
-              {item}
-            </a>
-          ))}
-        </div>
+    <footer className="px-5 pb-10 sm:px-10">
+      <div className="mx-auto flex max-w-[1180px] flex-col justify-between gap-5 border-t border-[#bfdbfe] pt-8 text-sm text-[#6f667f] md:flex-row">
+        <p className="font-display font-black tracking-[-0.03em] text-[#14231d]">SociaFlow AI</p>
+        <p>&copy; 2026 SociaFlow AI. Custom social automation for modern businesses.</p>
       </div>
     </footer>
   );
@@ -935,34 +729,13 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="overflow-hidden">
-        <section className="hero-gradient rounded-b-[3rem]">
-          <div className="mx-auto flex max-w-[1440px] flex-col items-center px-5 pb-section-gap pt-[156px] text-center sm:px-10 sm:pt-[172px]">
-            <h1 className="reveal mx-auto mb-6 max-w-4xl font-display text-5xl font-extrabold leading-[1.05] tracking-[-0.045em] text-ink sm:text-6xl lg:text-[64px]">
-              The Trusted Platform for Social Media Business Automation
-            </h1>
-            <p className="reveal reveal-delay-1 mx-auto mb-10 max-w-2xl text-base leading-8 text-on-surface-variant sm:text-lg">
-              Streamline customer interactions, automate responses, and scale social commerce with an
-              AI workflow configured specifically for your business environment.
-            </p>
-            <div className="reveal reveal-delay-2 mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button>Request Setup</Button>
-              <a
-                className="inline-flex items-center gap-2 px-4 py-3 font-display text-sm font-bold text-ink underline underline-offset-4"
-                href="#pricing"
-              >
-                See pricing
-                <Icon name="arrowUpRight" className="h-4 w-4" />
-              </a>
-            </div>
-            <InteractiveChatPreview />
-          </div>
-        </section>
-        <FeatureIntro />
-        <Benefits />
-        <PlatformSupport />
+      <main>
+        <Hero />
+        <Intro />
+        <Services />
+        <Channels />
         <Workflow />
-        <CTA />
+        <Pricing />
       </main>
       <Footer />
     </>

@@ -18,15 +18,18 @@ html {
 
 body {
   min-height: 100vh;
-  background: #f9f9f8;
-  color: #1a1c1c;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(147, 197, 253, 0.24), transparent 30rem),
+    radial-gradient(circle at 88% 12%, rgba(213, 119, 170, 0.16), transparent 28rem),
+    #f7fbff;
+  color: #14231d;
   font-family: var(--font-inter), Inter, sans-serif;
   text-rendering: geometricPrecision;
 }
 
 ::selection {
-  background: #b2dfdb;
-  color: #224e4b;
+  background: #bfdbfe;
+  color: #14231d;
 }
 
 .mint-wash {
@@ -35,9 +38,9 @@ body {
 
 .hero-gradient {
   background:
-    radial-gradient(circle at 10% 0%, rgba(178, 223, 219, 0.28), transparent 32rem),
-    radial-gradient(circle at 90% 12%, rgba(255, 204, 174, 0.2), transparent 28rem),
-    #f9f9f8;
+    radial-gradient(circle at 10% 0%, rgba(147, 197, 253, 0.36), transparent 32rem),
+    radial-gradient(circle at 90% 12%, rgba(213, 119, 170, 0.22), transparent 28rem),
+    #f7fbff;
 }
 
 .glass-bar {
@@ -47,7 +50,7 @@ body {
 
 .soft-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(59, 102, 99, 0.36) transparent;
+  scrollbar-color: rgba(37, 99, 235, 0.36) transparent;
 }
 
 .soft-scroll::-webkit-scrollbar {
@@ -56,7 +59,7 @@ body {
 }
 
 .soft-scroll::-webkit-scrollbar-thumb {
-  background: rgba(59, 102, 99, 0.3);
+  background: rgba(37, 99, 235, 0.3);
   border-radius: 9999px;
 }
 
