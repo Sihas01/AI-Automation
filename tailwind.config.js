@@ -1,0 +1,58 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        background: "#f9f9f8",
+        surface: "#f9f9f8",
+        "surface-dim": "#d9dad9",
+        "surface-bright": "#f9f9f8",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f3f4f2",
+        "surface-container": "#edeeed",
+        "surface-container-high": "#e8e8e7",
+        "surface-container-highest": "#e2e3e1",
+        "surface-variant": "#e2e3e1",
+        "on-background": "#1a1c1c",
+        "on-surface": "#1a1c1c",
+        "on-surface-variant": "#404847",
+        "inverse-surface": "#2f3130",
+        "inverse-on-surface": "#f0f1f0",
+        outline: "#717977",
+        "outline-variant": "#c0c8c7",
+        primary: "#3b6663",
+        "on-primary": "#ffffff",
+        "primary-container": "#b2dfdb",
+        "on-primary-container": "#396461",
+        secondary: "#516161",
+        "secondary-container": "#d4e6e5",
+        tertiary: "#7c563e",
+        "tertiary-container": "#ffccae",
+        ink: "#1a1a1a",
+      },
+      fontFamily: {
+        display: ["Manrope", "sans-serif"],
+        body: ["Inter", "sans-serif"],
+      },
+      borderRadius: {
+        soft: "1rem",
+        card: "1.5rem",
+        panel: "2rem",
+        hero: "3rem",
+      },
+      boxShadow: {
+        ambient: "0 4px 24px rgba(0, 0, 0, 0.02)",
+        float: "0 24px 48px rgba(0, 0, 0, 0.08)",
+        teal: "0 24px 48px rgba(59, 102, 99, 0.15)",
+      },
+      spacing: {
+        "container-pad": "40px",
+        gutter: "24px",
+        "section-gap": "80px",
+        "card-pad": "32px",
+      },
+    },
+  },
+  plugins: [],
+};
