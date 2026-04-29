@@ -13,32 +13,32 @@ const integrationNodes = [
   {
     label: channelLogos[1][0],
     src: channelLogos[1][1],
-    position: "left-[25.6%] top-[26.6%]",
+    position: "left-[21%] top-[28%] sm:left-[25.6%] sm:top-[26.6%]",
   },
   {
     label: channelLogos[5][0],
     src: channelLogos[5][1],
-    position: "left-[50%] top-[44.7%]",
+    position: "left-[50%] top-[43%] sm:left-[50%] sm:top-[44.7%]",
   },
   {
     label: channelLogos[2][0],
     src: channelLogos[2][1],
-    position: "left-[22.8%] top-[58.4%]",
+    position: "left-[18%] top-[53%] sm:left-[22.8%] sm:top-[58.4%]",
   },
   {
     label: channelLogos[0][0],
     src: channelLogos[0][1],
-    position: "left-[38.2%] top-[74.7%]",
+    position: "left-[33%] top-[68%] sm:left-[38.2%] sm:top-[74.7%]",
   },
   {
     label: channelLogos[4][0],
     src: channelLogos[4][1],
-    position: "left-[68.9%] top-[39.9%]",
+    position: "left-[74%] top-[40%] sm:left-[68.9%] sm:top-[39.9%]",
   },
   {
     label: channelLogos[3][0],
     src: channelLogos[3][1],
-    position: "left-[87.8%] top-[62.1%]",
+    position: "left-[85%] top-[56%] sm:left-[87.8%] sm:top-[62.1%]",
   },
 ];
 
@@ -498,18 +498,18 @@ function Hero() {
                 <span className="pr-5">See pricing plans</span>
               </a>
             </div>
-          </div>
-
-          {/* Dashboard image */}
-          <div className="relative mx-auto max-w-[1380px] max-h-[750px] overflow-visible px-4">
-            <div className="relative z-10 overflow-hidden rounded-t-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md">
-              <img
-                alt="Zeylun Automate CMS Dashboard"
-                className="w-full rounded-t-xl object-cover object-top"
-                src="/images/Zyelun-automate-CMS-dashboard.png"
-              />
             </div>
-          </div>
+  
+            {/* Dashboard image */}
+            <div className="relative mr-[-1rem] ml-auto w-[78vw] max-w-none max-h-[750px] overflow-hidden pl-0 pr-0 sm:mx-auto sm:mr-auto sm:max-w-[1380px] sm:overflow-visible sm:px-4">
+              <div className="relative z-10 overflow-hidden rounded-tl-[1.35rem] rounded-tr-none border border-white/10 bg-white p-3 sm:rounded-t-2xl sm:border-white/15 sm:bg-white/10 sm:p-5 sm:backdrop-blur-md">
+                <img
+                  alt="Zeylun Automate CMS Dashboard"
+                  className="w-[128%] max-w-none origin-top-left rounded-tl-[1rem] rounded-tr-none object-cover object-top sm:w-full sm:rounded-t-xl"
+                  src="/images/Zyelun-automate-CMS-dashboard.png"
+                />
+              </div>
+            </div>
         </div>
       </div>
     </section>
@@ -637,7 +637,7 @@ function Channels() {
           </p>
         </div>
 
-        <div className="relative mx-auto mt-16 h-[320px] max-w-[900px] overflow-visible sm:h-[400px] lg:h-[470px]">
+        <div className="relative mx-auto mt-12 h-[390px] max-w-[900px] overflow-visible sm:mt-16 sm:h-[400px] lg:h-[470px]">
           <svg className="absolute inset-0 h-full w-full text-[#7d9992]" fill="none" viewBox="0 0 900 470">
             <path d="M90 410a360 360 0 0 1 720 0" opacity="0.48" stroke="currentColor" strokeWidth="1.2" />
             <path d="M170 410a280 280 0 0 1 560 0" opacity="0.38" stroke="currentColor" strokeWidth="1.2" />
@@ -647,15 +647,15 @@ function Channels() {
 
           {integrationNodes.map((node) => (
             <div className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 ${node.position}`} key={node.label}>
-              <div className="grid h-11 w-11 place-items-center rounded-full border border-[#d8e3de] bg-white shadow-[0_10px_24px_rgba(20,35,29,0.08)] sm:h-12 sm:w-12">
-                <img alt={`${node.label} logo`} className="h-4 w-4 sm:h-5 sm:w-5" src={node.src} />
+              <div className="grid h-10 w-10 place-items-center rounded-full border border-[#d8e3de] bg-white shadow-[0_10px_24px_rgba(20,35,29,0.08)] sm:h-12 sm:w-12">
+                <img alt={`${node.label} logo`} className="h-3.5 w-3.5 sm:h-5 sm:w-5" src={node.src} />
               </div>
             </div>
           ))}
 
-          <div className="absolute bottom-[-8%] left-1/2 z-20 -translate-x-1/2 sm:bottom-[-6%]">
-            <div className="flex h-[150px] w-[150px] flex-col items-center justify-center rounded-full border border-[#93c5fd]/40 bg-[linear-gradient(160deg,#2563eb_0%,#1d4ed8_48%,#0b2a74_100%)] px-5 pb-5 pt-5 text-center shadow-[0_18px_40px_rgba(37,99,235,0.24)] sm:h-[164px] sm:w-[164px]">
-              <p className="max-w-[112px] font-display text-[1.15rem] font-black leading-[1.08] tracking-[-0.04em] text-white/75 sm:text-[1.3rem]">
+          <div className="absolute bottom-[2%] left-1/2 z-20 -translate-x-1/2 sm:bottom-[-6%]">
+            <div className="flex h-[118px] w-[118px] flex-col items-center justify-center rounded-full border border-[#93c5fd]/40 bg-[linear-gradient(160deg,#2563eb_0%,#1d4ed8_48%,#0b2a74_100%)] px-4 pb-4 pt-4 text-center shadow-[0_18px_40px_rgba(37,99,235,0.24)] sm:h-[164px] sm:w-[164px] sm:px-5 sm:pb-5 sm:pt-5">
+              <p className="max-w-[90px] font-display text-[0.96rem] font-black leading-[1.04] tracking-[-0.04em] text-white/75 sm:max-w-[112px] sm:text-[1.3rem]">
                 Zeylun Automate
               </p>
             </div>
