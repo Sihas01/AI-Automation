@@ -1,2 +1,2 @@
-# automation-landing-page for zeylun 2
+# automation-landing-page for zeylun
 landing page of social media business automation service. 

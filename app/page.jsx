@@ -1,44 +1,30 @@
-const navItems = ["Services", "Channels", "Workflow", "Pricing"];
+"use client";
 
-const channelLogos = [
-  ["WhatsApp", "/social-logos/whatsapp.svg"],
-  ["Instagram", "/social-logos/instagram.svg"],
-  ["Messenger", "/social-logos/messenger.svg"],
-  ["Facebook", "/social-logos/facebook.svg"],
-  ["TikTok", "/social-logos/tiktok.svg"],
-  ["Telegram", "/social-logos/telegram.svg"],
+import { useState } from "react";
+import RevealOnScroll from "./components/reveal-on-scroll";
+
+const navItems = [
+  { label: "Services", type: "dropdown" },
+  { label: "Benefits", href: "#benefits" },
+  { label: "Workflow", href: "#workflow" },
+  { label: "Pricing", href: "#pricing" },
 ];
 
-const integrationNodes = [
+const serviceIndustries = [
   {
-    label: channelLogos[1][0],
-    src: channelLogos[1][1],
-    position: "left-[21%] top-[28%] sm:left-[25.6%] sm:top-[26.6%]",
+    title: "Educational Institutes",
+    description: "Automate inquiries, admissions follow-ups, course questions, and student communication with one clear workflow.",
+    image: "/images/service-education.png",
   },
   {
-    label: channelLogos[5][0],
-    src: channelLogos[5][1],
-    position: "left-[50%] top-[43%] sm:left-[50%] sm:top-[44.7%]",
+    title: "Clinics / Healthcare Clinics",
+    description: "Handle patient questions, appointment requests, reminders, and front-desk coordination with less manual work.",
+    image: "/images/service-healthcare.png",
   },
   {
-    label: channelLogos[2][0],
-    src: channelLogos[2][1],
-    position: "left-[18%] top-[53%] sm:left-[22.8%] sm:top-[58.4%]",
-  },
-  {
-    label: channelLogos[0][0],
-    src: channelLogos[0][1],
-    position: "left-[33%] top-[68%] sm:left-[38.2%] sm:top-[74.7%]",
-  },
-  {
-    label: channelLogos[4][0],
-    src: channelLogos[4][1],
-    position: "left-[74%] top-[40%] sm:left-[68.9%] sm:top-[39.9%]",
-  },
-  {
-    label: channelLogos[3][0],
-    src: channelLogos[3][1],
-    position: "left-[85%] top-[56%] sm:left-[87.8%] sm:top-[62.1%]",
+    title: "Laptop & Computer Dealers",
+    description: "Guide product inquiries, stock checks, quotes, and after-sales conversations from one organized inbox.",
+    image: "/images/service-computers.png",
   },
 ];
 
@@ -274,6 +260,20 @@ function Icon({ name, className = "h-5 w-5" }) {
         <path d="m8.5 12.5 2.2 2.2 4.8-5" />
       </>
     ),
+    chevronDown: <path d="m6 9 6 6 6-6" />,
+    close: (
+      <>
+        <path d="M6 6l12 12" />
+        <path d="M18 6 6 18" />
+      </>
+    ),
+    menu: (
+      <>
+        <path d="M4 7h16" />
+        <path d="M4 12h16" />
+        <path d="M4 17h16" />
+      </>
+    ),
     clock: (
       <>
         <circle cx="12" cy="12" r="9" />
@@ -402,44 +402,195 @@ function Button({ children, variant = "primary", className = "" }) {
 }
 
 function Header() {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+
+  const closeMobileNav = () => {
+    setMobileNavOpen(false);
+    setMobileServicesOpen(false);
+  };
+
   return (
     <header className="absolute left-0 top-0 z-50 w-full px-5 pt-6 sm:px-8">
       <div className="relative mx-auto flex max-w-[1600px] items-center justify-between">
-        <a className="flex items-center gap-3 text-white" href="#">
-          <span className="flex h-7 w-7 flex-col justify-center gap-1.5">
-            <span className="block h-[5px] w-7 rounded-full bg-white" />
-            <span className="block h-[5px] w-6 rounded-full bg-white" />
-            <span className="block h-[5px] w-7 rounded-full bg-white" />
-          </span>
+        <a className="flex items-center text-white" href="#">
           <span className="font-display text-lg font-black tracking-[-0.04em]">Zeylun Automate</span>
         </a>
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center rounded-full border border-white/80 bg-white px-2 py-2 shadow-[0_14px_36px_rgba(3,10,35,0.2)] lg:flex">
-          {navItems.map((item) => (
-            <a
-              className={`rounded-full px-5 py-2.5 font-body text-xs font-bold transition ${
-                item === navItems[0]
-                  ? "bg-[#2563eb] text-white shadow-[inset_0_-2px_0_rgba(0,0,0,0.12)]"
-                  : "text-[#3b3f52] hover:bg-[#eff6ff] hover:text-[#1d4ed8]"
-              }`}
-              href={`#${item.toLowerCase()}`}
-              key={item}
-            >
-              {item}
-            </a>
+          {navItems.map((item, index) => (
+            item.type === "dropdown" ? (
+              <div className="group relative" key={item.label}>
+                <button
+                  className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-body text-xs font-bold transition ${
+                    index === 0
+                      ? "bg-[#2563eb] text-white shadow-[inset_0_-2px_0_rgba(0,0,0,0.12)]"
+                      : "text-[#3b3f52] hover:bg-[#eff6ff] hover:text-[#1d4ed8]"
+                  }`}
+                  type="button"
+                >
+                  {item.label}
+                  <Icon name="chevronDown" className="h-3 w-3" />
+                </button>
+                <div className="pointer-events-none absolute left-1/2 top-full z-50 w-[920px] -translate-x-1/2 pt-4 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
+                  <div className="rounded-[1.9rem] border border-white/70 bg-white/95 p-4 shadow-[0_22px_55px_rgba(3,10,35,0.22)] backdrop-blur-xl">
+                    <div className="grid grid-cols-3 gap-4">
+                      {serviceIndustries.map((service) => (
+                        <a
+                          className="group/item flex min-h-[320px] flex-col rounded-[1.35rem] border border-[#dbeafe] bg-white p-2.5 text-left shadow-[0_18px_45px_rgba(37,99,235,0.07)] transition hover:border-[#93c5fd] hover:shadow-[0_22px_50px_rgba(37,99,235,0.14)]"
+                          href="#pricing"
+                          key={service.title}
+                        >
+                          <div className="overflow-hidden rounded-[1.05rem] bg-[#f8fafc]">
+                            <img
+                              alt={service.title}
+                              className="aspect-[1.2/1] w-full object-cover transition duration-300 group-hover/item:scale-[1.03]"
+                              src={service.image}
+                            />
+                          </div>
+                          <div className="flex flex-1 flex-col rounded-[1.05rem] bg-[#f8fafc] p-4">
+                            <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#2563eb] text-white shadow-[0_12px_22px_rgba(37,99,235,0.18)]">
+                              <Icon name="spark" className="h-4 w-4" />
+                            </div>
+                            <p className="font-display text-[1.1rem] font-black leading-5 text-[#14231d]">
+                              {service.title}
+                            </p>
+                            <p className="mt-3 text-sm leading-6 text-[#6f667f]">
+                              {service.description}
+                            </p>
+                          </div>
+                          <span className="mt-3 inline-flex items-center gap-2 self-start rounded-full border border-[#bfdbfe] bg-white pl-1 pr-3 py-1 font-body text-xs font-semibold text-[#1d4ed8] transition group-hover/item:bg-[#2563eb] group-hover/item:text-white">
+                            <span className="grid h-7 w-7 place-items-center rounded-full bg-[#2563eb] text-white transition group-hover/item:bg-white group-hover/item:text-[#2563eb]">
+                              <Icon name="arrow" className="h-3 w-3" />
+                            </span>
+                            Learn more
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                className="rounded-full px-5 py-2.5 font-body text-xs font-bold text-[#3b3f52] transition hover:bg-[#eff6ff] hover:text-[#1d4ed8]"
+                href={item.href}
+                key={item.label}
+              >
+                {item.label}
+              </a>
+            )
           ))}
         </nav>
-        <div className="hidden items-center gap-1 rounded-full border border-white/85 bg-white px-2 py-2 shadow-[0_14px_36px_rgba(3,10,35,0.18)] sm:flex">
-          <a className="rounded-full px-5 py-2.5 font-body text-xs font-bold text-[#14231d] transition hover:bg-[#eff6ff]" href="#services">
-            Watch demo
-          </a>
+        <div className="hidden items-center gap-1 rounded-full border border-white/85 bg-white px-2 py-2 shadow-[0_14px_36px_rgba(3,10,35,0.18)] lg:flex">
           <a className="rounded-full bg-[#14231d] px-5 py-2.5 font-body text-xs font-bold text-white shadow-[inset_0_-2px_0_rgba(255,255,255,0.16)] transition hover:bg-[#2563eb]" href="#pricing">
             Request setup
           </a>
         </div>
-      </div>
-    </header>
-  );
-}
+          <button
+            className="flex h-10 w-10 items-center justify-center text-white transition duration-300 hover:text-white/75 lg:hidden"
+            onClick={() => setMobileNavOpen(true)}
+            type="button"
+          >
+            <span className="sr-only">Open navigation</span>
+            <Icon name="menu" className="h-5 w-5" />
+          </button>
+          <>
+            <button
+              aria-label="Close navigation"
+              className={`fixed inset-0 z-40 bg-[#0b2a74]/12 backdrop-blur-[2px] transition duration-300 lg:hidden ${
+                mobileNavOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+              }`}
+              onClick={closeMobileNav}
+              type="button"
+            />
+            <div
+              className={`fixed inset-y-0 right-0 z-50 flex w-[75vw] max-w-[26rem] min-w-[17rem] flex-col border-l border-white/75 bg-white p-4 shadow-[-18px_0_50px_rgba(3,10,35,0.22)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${
+                mobileNavOpen ? "translate-x-0" : "translate-x-full"
+              }`}
+            >
+              <div className="mb-5 flex items-center justify-between">
+                <div>
+                  <p className="font-display text-lg font-black tracking-[-0.04em] text-[#14231d]">Zeylun Automate</p>
+                  <p className="text-xs text-[#6f667f]">Navigation</p>
+                </div>
+                <button
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#dbeafe] bg-[#f8fbff] text-[#1d4ed8] transition hover:bg-white"
+                  onClick={closeMobileNav}
+                  type="button"
+                >
+                  <span className="sr-only">Close navigation</span>
+                  <Icon name="close" className="h-4 w-4" />
+                </button>
+              </div>
+
+              <div className="flex flex-1 flex-col gap-2 overflow-y-auto pr-1">
+                {navItems.map((item) =>
+                  item.type === "dropdown" ? (
+                    <div className="rounded-[1.35rem] border border-[#dbeafe] bg-[#f8fbff] p-2" key={item.label}>
+                      <button
+                        className="flex w-full items-center justify-between rounded-[1rem] px-3 py-3 text-left font-body text-sm font-bold text-[#14231d] transition hover:bg-white"
+                        onClick={() => setMobileServicesOpen((value) => !value)}
+                        type="button"
+                      >
+                        <span>{item.label}</span>
+                        <span
+                          className={`grid h-8 w-8 place-items-center rounded-full bg-[#2563eb] text-white transition-transform duration-300 ${
+                            mobileServicesOpen ? "rotate-180" : ""
+                          }`}
+                        >
+                          <Icon name="chevronDown" className="h-3.5 w-3.5" />
+                        </span>
+                      </button>
+                      <div
+                        className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                          mobileServicesOpen ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        <div className="mt-1 space-y-2 pb-2">
+                          {serviceIndustries.map((service) => (
+                            <a
+                              className="ml-4 block w-[calc(100%-1rem)] rounded-[1rem] border border-[#dbeafe] bg-white px-4 py-3 text-sm font-semibold text-[#5f6880] transition hover:border-[#93c5fd] hover:text-[#14231d]"
+                              href="#pricing"
+                              key={service.title}
+                              onClick={closeMobileNav}
+                            >
+                              {service.title}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <a
+                      className="flex items-center justify-between rounded-[1.35rem] border border-[#dbeafe] bg-white px-4 py-3 font-body text-sm font-bold text-[#14231d] transition hover:bg-[#f8fbff]"
+                      href={item.href}
+                      key={item.label}
+                      onClick={closeMobileNav}
+                    >
+                      {item.label}
+                      <span className="grid h-8 w-8 place-items-center rounded-full bg-[#eff6ff] text-[#2563eb]">
+                        <Icon name="arrow" className="h-3.5 w-3.5" />
+                      </span>
+                    </a>
+                  )
+                )}
+              </div>
+
+              <div className="mt-4 grid gap-2">
+                <a
+                  className="rounded-full bg-[#2563eb] px-4 py-3 text-center font-body text-sm font-bold text-white shadow-[0_16px_30px_rgba(37,99,235,0.24)] transition hover:bg-[#1d4ed8]"
+                  href="#pricing"
+                  onClick={closeMobileNav}
+                >
+                  Request setup
+                </a>
+              </div>
+            </div>
+          </>
+        </div>
+      </header>
+    );
+  }
 
 function DashboardStat({ label, value, change }) {
   return (
@@ -471,7 +622,7 @@ function Hero() {
 
 
           {/* Hero text content */}
-            <div className="mx-auto mb-10 max-w-5xl px-4 text-center sm:mb-12 sm:px-0">
+            <RevealOnScroll className="mx-auto mb-10 max-w-5xl px-4 text-center sm:mb-12 sm:px-0">
               <h1 className="mx-auto mb-5 max-w-5xl pt-4 font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.06em] text-white sm:mb-6 sm:pt-6 sm:text-6xl lg:text-[84px]">
                 Run your social business from one intelligent CMS.
               </h1>
@@ -495,13 +646,13 @@ function Hero() {
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-white text-[#0b2a74]">
                   <Icon name="dollar" className="h-3.5 w-3.5" />
                 </span>
-                <span className="pr-5">See pricing plans</span>
+                <span className="pr-5">Pricing plans</span>
               </a>
             </div>
-            </div>
+            </RevealOnScroll>
   
             {/* Dashboard image */}
-            <div className="relative ml-auto w-[78vw] max-w-none max-h-[750px] overflow-hidden pl-0 pr-0 sm:mx-auto sm:mr-auto sm:max-w-[1380px] sm:overflow-visible sm:px-4">
+            <RevealOnScroll className="relative ml-auto w-[78vw] max-w-none max-h-[750px] overflow-hidden pl-0 pr-0 sm:mx-auto sm:mr-auto sm:max-w-[1380px] sm:overflow-visible sm:px-4" delay={140}>
               <div className="relative z-10 overflow-hidden rounded-tl-[1.35rem] rounded-tr-none border border-white/10 bg-white p-3 sm:rounded-t-2xl sm:border-white/15 sm:bg-white/10 sm:p-5 sm:backdrop-blur-md">
                 <img
                   alt="Zeylun Automate CMS Dashboard"
@@ -509,7 +660,7 @@ function Hero() {
                   src="/images/Zyelun-automate-CMS-dashboard.png"
                 />
               </div>
-            </div>
+            </RevealOnScroll>
         </div>
       </div>
     </section>
@@ -518,9 +669,9 @@ function Hero() {
 
 function Intro() {
   return (
-    <section className="px-5 py-20 sm:px-10">
-      <div className="mx-auto grid max-w-[1180px] gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <div className="relative min-h-[620px] overflow-visible bg-transparent p-0">
+    <section className="px-5 py-12 sm:px-10 sm:py-20" id="workflow">
+      <RevealOnScroll className="mx-auto grid max-w-[1180px] gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div className="order-2 relative min-h-[620px] overflow-visible bg-transparent p-0 lg:order-1">
           <div className="absolute bottom-10 top-10 left-1/2 w-[82%] -translate-x-1/2 bg-[radial-gradient(#1d4ed8_2px,transparent_2px)] bg-[size:24px_24px] opacity-25 [mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%),linear-gradient(180deg,transparent_0%,black_10%,black_90%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%),linear-gradient(180deg,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-composite:source-in]" />
           <div className="relative mx-auto grid max-w-[420px] grid-cols-2 gap-3 sm:gap-4">
             {[
@@ -545,30 +696,32 @@ function Intro() {
                 "ml-2 mt-5 h-[280px]",
               ],
             ].map(([title, body, position], index) => (
-              <div
-                className={`relative overflow-hidden rounded-[1.75rem] bg-[linear-gradient(335deg,#0b2a74_0%,#123a95_42%,#1d4ed8_100%)] p-5 text-white shadow-[0_18px_45px_rgba(37,99,235,0.16)] ${position}`}
-                key={title}
-              >
-                <div className="relative z-10">
-                  <p className="mb-2 font-display text-lg font-black tracking-[-0.03em] text-white/75">{title}</p>
-                  <p className="text-sm leading-6 text-white/75">{body}</p>
+              <RevealOnScroll delay={index * 90} key={title}>
+                <div className={`relative overflow-hidden rounded-[1.75rem] bg-[linear-gradient(335deg,#0b2a74_0%,#123a95_42%,#1d4ed8_100%)] p-5 text-white shadow-[0_18px_45px_rgba(37,99,235,0.16)] ${position}`}>
+                  <div className="relative z-10">
+                    <p className="mb-2 font-display text-lg font-black tracking-[-0.03em] text-white/75">{title}</p>
+                    <p className="text-sm leading-6 text-white/75">{body}</p>
+                  </div>
+                  <div className="pointer-events-none absolute bottom-[-1.65rem] right-3 font-display text-[7rem] font-black leading-none tracking-[-0.08em] text-white/40">
+                    {index + 1}
+                  </div>
                 </div>
-                <div className="pointer-events-none absolute bottom-[-1.65rem] right-3 font-display text-[7rem] font-black leading-none tracking-[-0.08em] text-white/40">
-                  {index + 1}
-                </div>
-              </div>
+              </RevealOnScroll>
             ))}
           </div>
         </div>
 
-        <div className="border-0 bg-transparent p-0 shadow-none">
+        <div className="order-1 border-0 bg-transparent p-0 text-center shadow-none lg:order-2 lg:text-left">
           <h2 className="mb-6 max-w-xl font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
             Every customer conversation becomes a trackable business action.
           </h2>
-          <p className="mb-8 max-w-2xl text-base leading-8 text-[#6f667f] sm:text-lg">
+          <p className="mb-8 max-w-2xl text-base leading-8 text-[#6f667f] sm:hidden">
+            Zeylun Automate turns customer chats into clear, trackable actions so your team can manage questions, orders, payments, and follow-ups in one flow.
+          </p>
+          <p className="mb-8 hidden max-w-2xl text-base leading-8 text-[#6f667f] sm:block sm:text-lg">
             Zeylun Automate is a hands-on automation system built around the real way your team operates. We map how customers ask questions, how orders are confirmed, how payments are verified, and how follow-ups are handled after the sale, then configure the AI model and CMS around those exact workflows. That means every conversation can move through a clear operational path instead of living as scattered messages across different social channels.
           </p>
-          <div className="flex flex-wrap gap-x-7 gap-y-3">
+          <div className="flex flex-wrap justify-center gap-x-7 gap-y-3 lg:justify-start">
             {["Always-on support", "Custom workflow", "CMS visibility"].map((item) => (
               <div className="inline-flex items-center gap-2" key={item}>
                 <Icon name="check" className="h-5 w-5 text-[#2563eb]" />
@@ -577,46 +730,45 @@ function Intro() {
             ))}
           </div>
         </div>
-      </div>
+      </RevealOnScroll>
     </section>
   );
 }
 
 function Services() {
   return (
-    <section className="px-5 py-20 sm:px-10" id="services">
+    <section className="px-5 py-12 sm:px-10 sm:py-20" id="benefits">
       <div className="mx-auto max-w-[1180px]">
-        <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center text-center">
+        <RevealOnScroll className="mx-auto mb-12 flex max-w-3xl flex-col items-center text-center">
           <h2 className="mb-5 font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
             Benefits that make social selling easier to manage.
           </h2>
           <p className="text-base leading-8 text-[#6f667f] sm:text-lg">
             Zeylun Automate gives businesses a clearer, faster, and more reliable way to handle customer communication across social channels while keeping the entire workflow visible to the team.
           </p>
-        </div>
+        </RevealOnScroll>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {serviceCards.map((item, index) => (
-            <article
-              className="flex min-h-[210px] flex-col rounded-[1.35rem] border border-[#dbeafe] bg-white p-2.5 text-[#14231d] shadow-[0_18px_45px_rgba(37,99,235,0.07)]"
-              key={item.title}
-            >
-              <div className={`rounded-[1.1rem] p-5 ${index === 2 ? 'bg-[linear-gradient(335deg,#0b2a74_0%,#123a95_42%,#1d4ed8_100%)]' : 'bg-[#f8fafc]'}`}>
-                <div className={`mb-4 flex h-8 w-8 items-center justify-center rounded-full text-white ${index === 2 ? 'bg-white/20' : 'bg-[#2563eb]'}`}>
-                  <BenefitIcon name={item.icon} className="h-4 w-4" />
+            <RevealOnScroll delay={index * 90} key={item.title}>
+              <article className="flex min-h-[210px] flex-col rounded-[1.35rem] border border-[#dbeafe] bg-white p-2.5 text-[#14231d] shadow-[0_18px_45px_rgba(37,99,235,0.07)]">
+                <div className={`rounded-[1.1rem] p-5 ${index === 2 ? 'bg-[linear-gradient(335deg,#0b2a74_0%,#123a95_42%,#1d4ed8_100%)]' : 'bg-[#f8fafc]'}`}>
+                  <div className={`mb-4 flex h-8 w-8 items-center justify-center rounded-full text-white ${index === 2 ? 'bg-white/20' : 'bg-[#2563eb]'}`}>
+                    <BenefitIcon name={item.icon} className="h-4 w-4" />
+                  </div>
+                  <h3 className={`mb-3 whitespace-pre-line font-display text-[1.35rem] font-black tracking-[-0.04em] ${index === 2 ? 'text-white/75' : 'text-[#14231d]'}`}>{item.title}</h3>
+                  <p className={`w-full text-sm leading-6 min-h-[120px] ${index === 2 ? 'text-white/75' : 'text-[#6f667f]'}`}>{item.bodyLines.join(" ")}</p>
                 </div>
-                <h3 className={`mb-3 whitespace-pre-line font-display text-[1.35rem] font-black tracking-[-0.04em] ${index === 2 ? 'text-white/75' : 'text-[#14231d]'}`}>{item.title}</h3>
-                <p className={`w-full text-sm leading-6 min-h-[120px] ${index === 2 ? 'text-white/75' : 'text-[#6f667f]'}`}>{item.bodyLines.join(" ")}</p>
-              </div>
-              <a
-                className="group mt-3 inline-flex cursor-pointer items-center gap-2 self-start rounded-full border border-[#bfdbfe] bg-white pl-1 pr-2 py-1 font-body text-xs font-semibold text-[#1d4ed8] transition-colors duration-300 ease-out hover:bg-[#2563eb] hover:text-white"
-                href="#pricing"
-              >
-                <span className="grid aspect-square h-6 shrink-0 place-items-center rounded-full bg-[#2563eb] text-white transition-colors duration-300 ease-out group-hover:bg-white group-hover:text-[#2563eb]">
-                  <Icon name="arrow" className="h-3 w-[0.95rem]" />
-                </span>
-                Learn more
-              </a>
-            </article>
+                <a
+                  className="group mt-3 inline-flex cursor-pointer items-center gap-2 self-start rounded-full border border-[#bfdbfe] bg-white pl-1 pr-2 py-1 font-body text-xs font-semibold text-[#1d4ed8] transition-colors duration-300 ease-out hover:bg-[#2563eb] hover:text-white"
+                  href="#pricing"
+                >
+                  <span className="grid aspect-square h-6 shrink-0 place-items-center rounded-full bg-[#2563eb] text-white transition-colors duration-300 ease-out group-hover:bg-white group-hover:text-[#2563eb]">
+                    <Icon name="arrow" className="h-3 w-[0.95rem]" />
+                  </span>
+                  Learn more
+                </a>
+              </article>
+            </RevealOnScroll>
           ))}
         </div>
       </div>
@@ -626,8 +778,8 @@ function Services() {
 
 function Channels() {
   return (
-    <section className="px-5 py-20 sm:px-10" id="channels">
-      <div className="mx-auto max-w-[1180px] px-2 py-4 sm:px-4">
+    <section className="px-5 py-12 sm:px-10 sm:py-20" id="channels">
+      <RevealOnScroll className="mx-auto max-w-[1180px] px-2 py-4 sm:px-4">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mb-5 font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
             Integrates effortlessly with the tools you already use
@@ -637,38 +789,21 @@ function Channels() {
           </p>
         </div>
 
-        <div className="relative mx-auto mt-12 h-[390px] max-w-[900px] overflow-visible sm:mt-16 sm:h-[400px] lg:h-[470px]">
-          <svg className="absolute inset-0 h-full w-full text-[#7d9992]" fill="none" viewBox="0 0 900 470">
-            <path d="M90 410a360 360 0 0 1 720 0" opacity="0.48" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M170 410a280 280 0 0 1 560 0" opacity="0.38" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M250 410a200 200 0 0 1 400 0" opacity="0.32" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M325 410a125 125 0 0 1 250 0" opacity="0.26" stroke="currentColor" strokeWidth="1.2" />
-          </svg>
-
-          {integrationNodes.map((node) => (
-            <div className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 ${node.position}`} key={node.label}>
-              <div className="grid h-10 w-10 place-items-center rounded-full border border-[#d8e3de] bg-white shadow-[0_10px_24px_rgba(20,35,29,0.08)] sm:h-12 sm:w-12">
-                <img alt={`${node.label} logo`} className="h-3.5 w-3.5 sm:h-5 sm:w-5" src={node.src} />
-              </div>
-            </div>
-          ))}
-
-          <div className="absolute bottom-[2%] left-1/2 z-20 -translate-x-1/2 sm:bottom-[-6%]">
-            <div className="flex h-[118px] w-[118px] flex-col items-center justify-center rounded-full border border-[#93c5fd]/40 bg-[linear-gradient(160deg,#2563eb_0%,#1d4ed8_48%,#0b2a74_100%)] px-4 pb-4 pt-4 text-center shadow-[0_18px_40px_rgba(37,99,235,0.24)] sm:h-[164px] sm:w-[164px] sm:px-5 sm:pb-5 sm:pt-5">
-              <p className="max-w-[90px] font-display text-[0.96rem] font-black leading-[1.04] tracking-[-0.04em] text-white/75 sm:max-w-[112px] sm:text-[1.3rem]">
-                Zeylun Automate
-              </p>
-            </div>
-          </div>
+        <div className="mx-auto mt-10 max-w-[980px] sm:mt-14">
+          <img
+            alt="Zeylun Automate channels integration graphic"
+            className="mx-auto w-full max-w-[340px] sm:max-w-[980px]"
+            src="/channels.png"
+          />
         </div>
-      </div>
+      </RevealOnScroll>
     </section>
   );
 }
 
 function Workflow() {
   return (
-    <section className="px-5 py-20 sm:px-10" id="workflow">
+    <section className="px-5 py-12 sm:px-10 sm:py-20" id="workflow">
       <div className="mx-auto max-w-[1180px] rounded-[2.75rem] bg-[#14231d] p-6 text-white shadow-[0_28px_80px_rgba(20,35,29,0.18)] lg:p-10">
         <div className="mb-12 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <h2 className="font-display text-4xl font-black tracking-[-0.05em] sm:text-5xl">
@@ -694,31 +829,31 @@ function Workflow() {
 
 function Pricing() {
   return (
-    <section className="px-5 py-20 sm:px-10" id="pricing">
+    <section className="px-5 py-12 sm:px-10 sm:py-20" id="pricing">
       <div className="mx-auto max-w-[1180px]">
         <h2 className="sr-only">
           Zeylun pricing plans: Starter, Growth, and Pro with features and monthly support
         </h2>
 
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+        <RevealOnScroll className="mx-auto mb-12 max-w-3xl text-center">
           <h2 className="mb-6 font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
             Pricing plans built around your stage and message volume.
           </h2>
           <p className="mx-auto max-w-3xl text-base leading-8 text-[#6f667f] sm:text-lg">
             Follow the same operational approach at different depths, from first-time automation setup to full multi-channel AI handling with CRM and ongoing support.
           </p>
-        </div>
+        </RevealOnScroll>
 
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {pricingPlans.map((plan) => (
-            <article
-              className={`flex h-full flex-col rounded-[1.85rem] bg-white p-3 shadow-[0_18px_45px_rgba(37,99,235,0.07)] ring-1 ${
-                plan.featured
-                  ? "ring-[#dbeafe] shadow-[0_24px_55px_rgba(37,99,235,0.16)]"
-                  : "ring-[#dbeafe]"
-              }`}
-              key={plan.name}
-            >
+          {pricingPlans.map((plan, index) => (
+            <RevealOnScroll delay={index * 90} key={plan.name}>
+              <article
+                className={`flex h-full flex-col rounded-[1.85rem] bg-white p-3 shadow-[0_18px_45px_rgba(37,99,235,0.07)] ring-1 ${
+                  plan.featured
+                    ? "ring-[#dbeafe] shadow-[0_24px_55px_rgba(37,99,235,0.16)]"
+                    : "ring-[#dbeafe]"
+                }`}
+              >
               <div
                 className={`mb-2.5 flex flex-1 flex-col rounded-[1.35rem] p-3 ${
                   plan.featured
@@ -836,10 +971,11 @@ function Pricing() {
                 </a>
               </div>
             </article>
+            </RevealOnScroll>
           ))}
         </div>
 
-        <div className="mt-4 flex flex-col gap-4 rounded-[1.85rem] border border-[#dbeafe] bg-[#f8fbff] px-5 py-5 shadow-[0_18px_45px_rgba(37,99,235,0.07)] lg:flex-row lg:items-center lg:justify-between">
+        <RevealOnScroll className="mt-4 flex flex-col gap-4 rounded-[1.85rem] border border-[#dbeafe] bg-[#f8fbff] px-5 py-5 shadow-[0_18px_45px_rgba(37,99,235,0.07)] lg:flex-row lg:items-center lg:justify-between" delay={120}>
           <div>
             <p className="font-display text-lg font-black tracking-[-0.03em] text-[#14231d]">
               Monthly support & maintenance
@@ -858,7 +994,7 @@ function Pricing() {
               </span>
             ))}
           </div>
-        </div>
+        </RevealOnScroll>
       </div>
     </section>
   );
