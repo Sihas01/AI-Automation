@@ -33,7 +33,7 @@ module.exports = {
       },
       fontFamily: {
         display: ["Manrope", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        body: ["Nunito Sans", "sans-serif"],
       },
       borderRadius: {
         soft: "1rem",

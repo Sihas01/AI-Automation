@@ -9,6 +9,39 @@ const channelLogos = [
   ["Telegram", "/social-logos/telegram.svg"],
 ];
 
+const integrationNodes = [
+  {
+    label: channelLogos[1][0],
+    src: channelLogos[1][1],
+    position: "left-[25.6%] top-[26.6%]",
+  },
+  {
+    label: channelLogos[5][0],
+    src: channelLogos[5][1],
+    position: "left-[50%] top-[44.7%]",
+  },
+  {
+    label: channelLogos[2][0],
+    src: channelLogos[2][1],
+    position: "left-[22.8%] top-[58.4%]",
+  },
+  {
+    label: channelLogos[0][0],
+    src: channelLogos[0][1],
+    position: "left-[38.2%] top-[74.7%]",
+  },
+  {
+    label: channelLogos[4][0],
+    src: channelLogos[4][1],
+    position: "left-[68.9%] top-[39.9%]",
+  },
+  {
+    label: channelLogos[3][0],
+    src: channelLogos[3][1],
+    position: "left-[87.8%] top-[62.1%]",
+  },
+];
+
 const cmsStats = [
   ["Conversations", "1,284", "+18%"],
   ["Orders created", "316", "+24%"],
@@ -18,39 +51,193 @@ const cmsStats = [
 
 const serviceCards = [
   {
-    title: "Customer support",
-    body: "Answers product, delivery, policy, and business questions with your approved tone.",
+    title: "One place for every conversation",
+    bodyLines: [
+      "Keep customer questions and order requests",
+      "clearly organized with payment confirmations,",
+      "follow-up reminders, and team notes in one",
+      "shared workspace",
+    ],
     icon: "message",
   },
   {
-    title: "Order handling",
-    body: "Collects product choices, quantities, addresses, and customer details from chat.",
-    icon: "cart",
+    title: "Faster response\nat scale",
+    bodyLines: [
+      "Help your business respond quickly and",
+      "consistently during busy sales hours,",
+      "after-hours inquiries, and rising message",
+      "activity across every channel.",
+    ],
+    icon: "chart",
   },
   {
-    title: "Payment flow",
-    body: "Guides customers through payment steps and records confirmations for review.",
-    icon: "payment",
+    title: "More visibility for your team",
+    bodyLines: [
+      "See what has been answered, what still needs",
+      "review, and which customer orders are moving",
+      "forward or slowing down in real time.",
+    ],
+    icon: "bot",
   },
   {
-    title: "Feedback loop",
-    body: "Captures reviews, complaints, and follow-up requests so nothing gets buried.",
-    icon: "spark",
+    title: "Better conversion from social traffic",
+    bodyLines: [
+      "Convert more social inquiries into completed",
+      "actions by guiding customers from first",
+      "question to payment with clear, smooth next",
+      "steps.",
+    ],
+    icon: "conversion",
   },
 ];
 
 const workflowSteps = [
-  ["01", "Map", "We study your products, FAQs, order process, payment rules, and customer tone."],
-  ["02", "Train", "Your AI model is configured around real workflows instead of generic scripts."],
-  ["03", "Connect", "Social inboxes, order stages, payment tracking, and CMS views are linked together."],
-  ["04", "Improve", "After launch, workflows can be tuned from real customer conversations."],
+  ["01", "Map", "We study your products, FAQs, order process, payment rules, and customer tone. Every detail is carefully analyzed so we match your brand's unique voice."],
+  ["02", "Train", "Your AI model is configured around real workflows instead of generic scripts. We meticulously build custom paths to ensure responses perfectly fit your rules."],
+  ["03", "Connect", "Social inboxes, order stages, payment tracking, and CMS views are linked together. This unifies all your communications into one cohesive and powerful system."],
+  ["04", "Improve", "After launch, workflows can be tuned from real customer conversations. We constantly refine performance by using real-time data to boost conversion and success."],
 ];
 
-const pricingRows = [
-  ["Starting price", "$50+"],
-  ["Pricing depends on", "Business scale and workflow complexity"],
-  ["Included", "Trained AI model and CMS workflow setup"],
-  ["Configured for", "Support, orders, payments, and feedback"],
+const pricingPlans = [
+  {
+    name: "Starter",
+    tagline: "For small businesses getting their first automation",
+    price: "LKR 28,000",
+    label: "one-time setup fee",
+    icon: "message",
+    sections: [
+      {
+        title: "AI messaging",
+        items: [
+          { text: "AI auto-replies to customer messages", ai: true },
+          { text: "Smart welcome message flow", ai: true },
+        ],
+      },
+      {
+        title: "WhatsApp",
+        items: [
+          { text: "1 WhatsApp number connected" },
+          { text: "Keyword-triggered responses" },
+          { text: "Business hours auto-reply" },
+        ],
+      },
+      {
+        title: "Leads & contacts",
+        items: [
+          { text: "Website form lead capture" },
+          { text: "Contact storage up to 1,000" },
+          { text: "Basic dashboard (messages + leads)" },
+        ],
+      },
+      {
+        title: "Support",
+        items: [
+          { text: "Manual reply fallback" },
+          { text: "Email support" },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Growth",
+    tagline: "For businesses handling daily inquiries at scale",
+    price: "LKR 58,000",
+    label: "one-time setup fee",
+    featured: true,
+    badge: "Most popular",
+    icon: "eye",
+    sections: [
+      {
+        title: "AI messaging",
+        items: [
+          { text: "AI replies across WhatsApp + Instagram", ai: true },
+          { text: "AI-powered follow-up sequences", ai: true },
+          { text: "Sentiment detection (escalate to human)", ai: true },
+        ],
+      },
+      {
+        title: "Channels",
+        items: [
+          { text: "WhatsApp + Instagram connected" },
+          { text: "Unified multi-channel inbox" },
+        ],
+      },
+      {
+        title: "Automation",
+        items: [
+          { text: "Advanced keyword-based flows" },
+          { text: "Automated lead follow-up (3-step)" },
+          { text: "Conversation history tracking" },
+        ],
+      },
+      {
+        title: "CRM",
+        items: [
+          { text: "Lead tracking & status stages" },
+          { text: "Basic CRM dashboard" },
+          { text: "Up to 5,000 contacts" },
+        ],
+      },
+      {
+        title: "Support",
+        items: [{ text: "Chat + email support" }],
+      },
+    ],
+  },
+  {
+    name: "Pro",
+    tagline: "For high-volume businesses, institutes & agencies",
+    price: "LKR 105,000",
+    label: "one-time setup fee",
+    icon: "shield",
+    sections: [
+      {
+        title: "AI messaging",
+        items: [
+          { text: "Full AI conversation handling", ai: true },
+          { text: "AI lead qualification & scoring", ai: true },
+          { text: "Smart multi-step follow-up flows", ai: true },
+          { text: "AI summary of each conversation", ai: true },
+        ],
+      },
+      {
+        title: "Channels",
+        items: [
+          { text: "WhatsApp + Instagram + Email + Web" },
+          { text: "Unified omnichannel inbox" },
+        ],
+      },
+      {
+        title: "Automation",
+        items: [
+          { text: "Smart automation flows (visual builder)" },
+          { text: "Custom trigger rules & conditions" },
+          { text: "Broadcast campaigns to segments" },
+        ],
+      },
+      {
+        title: "CRM",
+        items: [
+          { text: "Full CRM with custom lead stages" },
+          { text: "Team access (multiple agents)" },
+          { text: "Unlimited contacts" },
+          { text: "Custom integrations on request" },
+        ],
+      },
+      {
+        title: "Support",
+        items: [{ text: "Priority support + onboarding call" }],
+      },
+    ],
+  },
+];
+
+const maintenancePills = [
+  "System monitoring",
+  "AI prompt updates",
+  "Flow improvements",
+  "Minor changes",
+  "LKR 5,000 - 12,000 / month",
 ];
 
 function Icon({ name, className = "h-5 w-5" }) {
@@ -100,6 +287,12 @@ function Icon({ name, className = "h-5 w-5" }) {
         <path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" />
       </>
     ),
+    dollar: (
+      <>
+        <path d="M12 3v18" />
+        <path d="M16 7.5c0-1.9-1.8-3.5-4-3.5s-4 1.6-4 3.5 1.8 3.1 4 3.5 4 1.1 4 3.5-1.8 3.5-4 3.5-4-1.6-4-3.5" />
+      </>
+    ),
     message: <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />,
     payment: (
       <>
@@ -118,6 +311,12 @@ function Icon({ name, className = "h-5 w-5" }) {
       <>
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
         <path d="m9 12 2 2 4-5" />
+      </>
+    ),
+    eye: (
+      <>
+        <path d="M1.5 12s3.8-6 10.5-6 10.5 6 10.5 6-3.8 6-10.5 6S1.5 12 1.5 12Z" />
+        <circle cx="12" cy="12" r="2.2" />
       </>
     ),
     spark: (
@@ -150,15 +349,51 @@ function Icon({ name, className = "h-5 w-5" }) {
   );
 }
 
+function BenefitIcon({ name, className = "h-5 w-5" }) {
+  const icons = {
+    chart: (
+      <path d="M13.5 2.25a.75.75 0 0 0-1.344-.454l-7.5 12A.75.75 0 0 0 5.25 15h4.5l-1.26 6.304a.75.75 0 0 0 1.365.56l7.5-12A.75.75 0 0 0 16.75 9h-4.5l1.26-6.304a.75.75 0 0 0-.01-.446Z" />
+    ),
+    bot: (
+      <path d="M1.323 11.447C2.811 7.976 6.085 5.25 12 5.25s9.189 2.726 10.677 6.197a1.39 1.39 0 0 1 0 1.106C21.189 16.024 17.915 18.75 12 18.75s-9.189-2.726-10.677-6.197a1.39 1.39 0 0 1 0-1.106ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+    ),
+    message: (
+      <path
+        clipRule="evenodd"
+        d="M4.804 21.644A.75.75 0 0 1 3.75 20.96v-4.87C2.776 14.66 2.25 13.156 2.25 11.5 2.25 6.805 6.616 3 12 3s9.75 3.805 9.75 8.5S17.384 20 12 20a10.77 10.77 0 0 1-4.364-.892l-2.832 2.536ZM7.5 10.75a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5h-9Z"
+        fillRule="evenodd"
+      />
+    ),
+    conversion: (
+      <path
+        clipRule="evenodd"
+        d="M11.7 3.05a.75.75 0 0 1 .6 0l7.5 3.25a.75.75 0 0 1 .45.688V12c0 5.052-3.03 8.33-7.95 9.86a.75.75 0 0 1-.444 0C7.03 20.33 3 17.052 3 12V6.988A.75.75 0 0 1 3.45 6.3l7.5-3.25Zm3.08 6.42a.75.75 0 0 0-1.06-1.06l-2.47 2.47-1.22-1.22a.75.75 0 1 0-1.06 1.06l1.75 1.75a.75.75 0 0 0 1.06 0l3-3Z"
+        fillRule="evenodd"
+      />
+    ),
+  };
+
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
+      {icons[name]}
+    </svg>
+  );
+}
+
 function Button({ children, variant = "primary", className = "" }) {
   const styles =
     variant === "secondary"
       ? "bg-white text-[#14231d] ring-1 ring-[#bfdbfe] hover:bg-[#f8fbff]"
-      : "bg-[#14231d] text-white shadow-[0_18px_34px_rgba(20,35,29,0.18)] hover:bg-[#243a31]";
+      : "bg-[#2563eb] text-white shadow-[0_18px_34px_rgba(37,99,235,0.28)] hover:bg-[#1d4ed8]";
 
   return (
     <a
-      className={`inline-flex items-center justify-center rounded-full px-6 py-3 font-display text-sm font-black tracking-[-0.01em] transition duration-200 active:scale-[0.98] ${styles} ${className}`}
+      className={`inline-flex items-center justify-center rounded-full px-6 py-3 font-body text-sm font-black tracking-[-0.01em] transition duration-200 active:scale-[0.98] ${styles} ${className}`}
       href="#pricing"
     >
       {children}
@@ -168,19 +403,39 @@ function Button({ children, variant = "primary", className = "" }) {
 
 function Header() {
   return (
-    <header className="fixed left-0 top-0 z-50 w-full px-4 py-4">
-      <div className="mx-auto flex max-w-[1220px] items-center justify-between rounded-full border border-white/80 bg-white/70 px-5 py-3 shadow-[0_18px_60px_rgba(37,99,235,0.08)] backdrop-blur-2xl">
-        <a className="font-display text-lg font-black tracking-[-0.05em] text-[#14231d]" href="#">
-          SociaFlow AI
+    <header className="absolute left-0 top-0 z-50 w-full px-5 pt-6 sm:px-8">
+      <div className="relative mx-auto flex max-w-[1600px] items-center justify-between">
+        <a className="flex items-center gap-3 text-white" href="#">
+          <span className="flex h-7 w-7 flex-col justify-center gap-1.5">
+            <span className="block h-[5px] w-7 rounded-full bg-white" />
+            <span className="block h-[5px] w-6 rounded-full bg-white" />
+            <span className="block h-[5px] w-7 rounded-full bg-white" />
+          </span>
+          <span className="font-display text-lg font-black tracking-[-0.04em]">Zeylun Automate</span>
         </a>
-        <nav className="hidden items-center gap-7 font-display text-sm font-extrabold text-[#686079] md:flex">
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center rounded-full border border-white/80 bg-white px-2 py-2 shadow-[0_14px_36px_rgba(3,10,35,0.2)] lg:flex">
           {navItems.map((item) => (
-            <a className="transition hover:text-[#14231d]" href={`#${item.toLowerCase()}`} key={item}>
+            <a
+              className={`rounded-full px-5 py-2.5 font-body text-xs font-bold transition ${
+                item === navItems[0]
+                  ? "bg-[#2563eb] text-white shadow-[inset_0_-2px_0_rgba(0,0,0,0.12)]"
+                  : "text-[#3b3f52] hover:bg-[#eff6ff] hover:text-[#1d4ed8]"
+              }`}
+              href={`#${item.toLowerCase()}`}
+              key={item}
+            >
               {item}
             </a>
           ))}
         </nav>
-        <Button className="px-5 py-2.5 text-xs">Request setup</Button>
+        <div className="hidden items-center gap-1 rounded-full border border-white/85 bg-white px-2 py-2 shadow-[0_14px_36px_rgba(3,10,35,0.18)] sm:flex">
+          <a className="rounded-full px-5 py-2.5 font-body text-xs font-bold text-[#14231d] transition hover:bg-[#eff6ff]" href="#services">
+            Watch demo
+          </a>
+          <a className="rounded-full bg-[#14231d] px-5 py-2.5 font-body text-xs font-bold text-white shadow-[inset_0_-2px_0_rgba(255,255,255,0.16)] transition hover:bg-[#2563eb]" href="#pricing">
+            Request setup
+          </a>
+        </div>
       </div>
     </header>
   );
@@ -201,310 +456,61 @@ function DashboardStat({ label, value, change }) {
   );
 }
 
-function CmsDashboard() {
-  return (
-    <div className="relative mx-auto h-[430px] w-full max-w-[1180px] sm:h-[560px] lg:h-[650px]">
-      <div className="absolute left-8 top-8 h-56 w-56 rounded-full bg-[#93c5fd]/34 blur-3xl" />
-      <div className="absolute bottom-4 right-8 h-60 w-60 rounded-full bg-[#7dd3fc]/24 blur-3xl" />
-
-      <div className="absolute left-1/2 top-6 w-[92%] max-w-[920px] -translate-x-1/2 sm:top-10">
-        <div className="rounded-[1.7rem] border border-[#cbd5e1] bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1] p-2.5 shadow-[0_38px_90px_rgba(15,23,42,0.22)]">
-          <div className="overflow-hidden rounded-[1.28rem] border border-[#94a3b8]/50 bg-white">
-            <img
-              alt="SociaFlow CMS dashboard open on a laptop"
-              className="aspect-[16/10] h-auto w-full object-cover"
-              src="/images/Zyelun-automate-CMS-dashboard.png"
-            />
-          </div>
-        </div>
-        <div className="mx-auto h-4 w-[86%] rounded-b-[1.4rem] bg-gradient-to-b from-[#e2e8f0] to-[#94a3b8] shadow-[0_18px_35px_rgba(15,23,42,0.18)]">
-          <div className="mx-auto h-1.5 w-24 rounded-b-xl bg-[#cbd5e1]" />
-        </div>
-        <div className="mx-auto h-2 w-[64%] rounded-b-full bg-[#64748b]/40 blur-[1px]" />
-      </div>
-
-      <div className="absolute bottom-7 left-0 hidden w-[34%] max-w-[330px] rotate-[-4deg] sm:block">
-        <div className="rounded-[2rem] border border-[#cbd5e1] bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1] p-2.5 shadow-[0_30px_70px_rgba(15,23,42,0.2)]">
-          <div className="mb-1 flex justify-center">
-            <span className="h-1.5 w-10 rounded-full bg-[#94a3b8]" />
-          </div>
-          <div className="overflow-hidden rounded-[1.45rem] border border-[#94a3b8]/40 bg-white">
-            <img
-              alt="SociaFlow CMS dashboard open on a tablet"
-              className="aspect-[4/5] h-auto w-full object-cover object-left-top"
-              src="/images/Zyelun-automate-CMS-dashboard.png"
-            />
-          </div>
-          <div className="mx-auto mt-1.5 h-2.5 w-2.5 rounded-full border border-[#94a3b8]/60 bg-[#e2e8f0]" />
-        </div>
-      </div>
-
-      <div className="absolute bottom-0 right-2 w-[24%] min-w-[118px] max-w-[210px] rotate-[5deg]">
-        <div className="rounded-[2.2rem] border border-[#cbd5e1] bg-gradient-to-br from-[#f8fafc] via-[#e2e8f0] to-[#cbd5e1] p-1.5 shadow-[0_28px_70px_rgba(15,23,42,0.24)] sm:p-2">
-          <div className="overflow-hidden rounded-[1.75rem] border border-[#94a3b8]/40 bg-white">
-            <div className="absolute left-1/2 top-3 z-10 h-4 w-14 -translate-x-1/2 rounded-full bg-[#0f172a]" />
-            <img
-              alt="SociaFlow CMS dashboard open on a mobile phone"
-              className="aspect-[9/16] h-auto w-full object-cover object-left-top"
-              src="/images/Zyelun-automate-CMS-dashboard.png"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="relative mx-auto w-full max-w-[1180px]">
-      <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#93c5fd]/30 blur-3xl" />
-      <div className="absolute -right-10 bottom-8 h-56 w-56 rounded-full bg-[#7dd3fc]/24 blur-3xl" />
-      <div className="relative rounded-[1.9rem] border border-white/80 bg-white/70 p-3 shadow-[0_34px_90px_rgba(37,99,235,0.14)] backdrop-blur">
-        <div className="overflow-hidden rounded-[1.55rem] border border-[#dbeafe] bg-[#f8fbff]">
-          <div className="flex h-11 items-center gap-3 border-b border-[#e5edf8] bg-[#eef4fb] px-4">
-            <div className="flex gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-[#c8d1dc]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#c8d1dc]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#c8d1dc]" />
-            </div>
-            <div className="hidden items-center gap-3 text-[#64748b] sm:flex">
-              <span className="text-lg leading-none">‹</span>
-              <span className="text-lg leading-none">›</span>
-            </div>
-            <div className="mx-auto hidden h-7 w-[42%] items-center justify-center rounded-md border border-[#dbeafe] bg-white text-[10px] font-bold text-[#64748b] md:flex">
-              sociaflow.cms
-            </div>
-            <div className="ml-auto flex items-center gap-3 text-xs font-bold text-[#64748b]">
-              <span>+</span>
-              <span>Export</span>
-            </div>
-          </div>
-
-          <div className="grid min-h-[610px] lg:grid-cols-[235px_1fr]">
-            <aside className="hidden border-r border-[#e5edf8] bg-white lg:flex lg:flex-col">
-              <div className="flex h-16 items-center gap-3 border-b border-[#e5edf8] px-5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#2563eb] text-white">
-                  <Icon name="bot" className="h-4 w-4" />
-                </div>
-                <p className="font-display text-lg font-black tracking-[-0.05em] text-[#14231d]">SociaFlow</p>
-              </div>
-              <div className="flex-1 px-4 py-5">
-                <p className="mb-3 px-2 text-[10px] font-black uppercase tracking-[0.18em] text-[#94a3b8]">General</p>
-                {["Dashboard", "Payments", "Customers", "Messages"].map((item, index) => (
-                  <div
-                    className={`mb-1 flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-black ${
-                      index === 0 ? "bg-[#eff6ff] text-[#14231d]" : "text-[#475569]"
-                    }`}
-                    key={item}
-                  >
-                    <span>{item}</span>
-                    {item === "Messages" ? <span className="rounded-md bg-white px-2 py-0.5 text-[10px]">8</span> : null}
-                  </div>
-                ))}
-                <p className="mb-3 mt-6 px-2 text-[10px] font-black uppercase tracking-[0.18em] text-[#94a3b8]">Tools</p>
-                {["Products", "Invoices", "Analytics", "Automation"].map((item) => (
-                  <div className="mb-1 flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-black text-[#475569]" key={item}>
-                    <span>{item}</span>
-                    {item === "Automation" ? <span className="rounded-md bg-[#eff6ff] px-2 py-0.5 text-[10px] text-[#1d4ed8]">AI</span> : null}
-                  </div>
-                ))}
-                <p className="mb-3 mt-6 px-2 text-[10px] font-black uppercase tracking-[0.18em] text-[#94a3b8]">Support</p>
-                {["Settings", "Security", "Help"].map((item) => (
-                  <div className="mb-1 rounded-xl px-3 py-2.5 text-xs font-black text-[#475569]" key={item}>
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <div className="m-4 rounded-2xl border border-[#e5edf8] bg-[#f8fbff] p-4">
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="h-9 w-9 rounded-xl bg-[#22c7c8]" />
-                  <div>
-                    <p className="text-xs font-black text-[#14231d]">Team</p>
-                    <p className="text-xs text-[#64748b]">Operations</p>
-                  </div>
-                </div>
-                <button className="w-full rounded-xl border border-[#dbeafe] bg-white py-2 text-xs font-black text-[#14231d]">
-                  Upgrade plan
-                </button>
-              </div>
-            </aside>
-
-            <main className="min-w-0">
-              <div className="flex h-16 items-center gap-4 border-b border-[#e5edf8] bg-white px-5">
-                <div className="flex h-8 min-w-0 flex-1 items-center rounded-xl border border-[#e5edf8] bg-white px-3 text-xs font-semibold text-[#64748b] sm:max-w-[260px]">
-                  Search workflows
-                </div>
-                <div className="ml-auto flex items-center gap-3 text-xs font-black text-[#64748b]">
-                  <span className="hidden sm:inline">Notifications</span>
-                  <div className="h-8 w-8 rounded-full bg-[#e2e8f0]" />
-                  <div className="hidden sm:block">
-                    <p className="text-[#14231d]">UrbanThreads</p>
-                    <p className="font-semibold text-[#94a3b8]">Business</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-5">
-                <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <h3 className="font-display text-2xl font-black tracking-[-0.05em] text-[#14231d]">Dashboard</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {["Oct 18 - Nov 18", "Monthly", "Filter", "Export"].map((item) => (
-                      <span className="rounded-lg border border-[#e5edf8] bg-white px-3 py-2 text-[11px] font-bold text-[#64748b]" key={item}>
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mb-4 grid gap-4 md:grid-cols-3">
-                  {cmsStats.slice(0, 3).map(([label, value, change]) => (
-                    <DashboardStat change={change} key={label} label={label} value={value} />
-                  ))}
-                </div>
-
-                <div className="grid gap-4 xl:grid-cols-[1.25fr_0.85fr]">
-                  <section className="rounded-2xl border border-[#e5edf8] bg-white p-5">
-                    <div className="mb-5 flex items-center justify-between">
-                      <div>
-                        <p className="mb-2 text-xs font-semibold text-[#14231d]">Sales overview</p>
-                        <p className="font-display text-2xl font-black tracking-[-0.05em] text-[#14231d]">$9,257.51</p>
-                        <p className="mt-1 text-xs text-[#64748b]"><span className="font-black text-[#0f9f8f]">15.8%</span> + $143.50 increased</p>
-                      </div>
-                      <div className="flex gap-2">
-                        <span className="rounded-lg border border-[#e5edf8] px-3 py-2 text-[11px] font-bold text-[#64748b]">Filter</span>
-                        <span className="rounded-lg border border-[#e5edf8] px-3 py-2 text-[11px] font-bold text-[#64748b]">Sort</span>
-                      </div>
-                    </div>
-                    <div className="relative flex h-52 items-end justify-between gap-6 overflow-hidden px-5 pb-8">
-                      <svg className="absolute inset-x-10 bottom-16 top-16 h-28 w-[80%] text-[#dbeafe]" fill="none" preserveAspectRatio="none" viewBox="0 0 480 130">
-                        <path d="M20 52 C130 42 170 82 240 84 C318 86 360 38 460 28" stroke="currentColor" strokeWidth="12" />
-                        <path d="M20 82 C130 78 170 100 240 100 C320 98 360 64 460 56" stroke="currentColor" strokeWidth="12" />
-                        <path d="M20 112 C128 108 172 118 240 116 C320 114 360 96 460 88" stroke="currentColor" strokeWidth="12" />
-                      </svg>
-                      {chartGroups.map(([amount, bars], groupIndex) => (
-                        <div className="relative z-10 flex w-28 flex-col items-center" key={amount}>
-                          <p className="mb-3 text-xs font-black text-[#14231d]">{amount}</p>
-                          <div className="flex h-32 w-full flex-col justify-end gap-1.5">
-                            {bars.map((height, index) => (
-                              <span
-                                className={`rounded-md ${index % 2 === 0 ? "bg-[#2563eb]" : "bg-[#22c7c8]"}`}
-                                key={`${amount}-${height}`}
-                                style={{ height: `${height / 4}px` }}
-                              />
-                            ))}
-                          </div>
-                          <p className="mt-3 text-xs text-[#64748b]">{["Oct", "Nov", "Dec"][groupIndex]}</p>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex justify-center gap-4 text-[10px] font-bold text-[#64748b]">
-                      {["Support", "Orders", "Payments", "Feedback"].map((item, index) => (
-                        <span className="inline-flex items-center gap-1" key={item}>
-                          <span className={`h-2 w-2 rounded-full ${index % 2 === 0 ? "bg-[#2563eb]" : "bg-[#22c7c8]"}`} />
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </section>
-
-                  <section className="rounded-2xl border border-[#e5edf8] bg-white p-5">
-                    <div className="mb-6 flex items-center justify-between">
-                      <div>
-                        <p className="mb-2 text-xs font-semibold text-[#14231d]">Total customers</p>
-                        <p className="font-display text-2xl font-black tracking-[-0.05em] text-[#14231d]">24,473</p>
-                        <p className="mt-1 text-xs text-[#64748b]"><span className="font-black text-[#0f9f8f]">8.3%</span> +749 increased</p>
-                      </div>
-                      <span className="rounded-lg border border-[#e5edf8] px-3 py-2 text-[11px] font-bold text-[#64748b]">Weekly</span>
-                    </div>
-                    <div className="flex h-44 items-end justify-between gap-3">
-                      {[28, 48, 124, 26, 70, 52, 88].map((height, index) => (
-                        <div className="flex flex-1 flex-col items-center gap-2" key={index}>
-                          <div
-                            className={`w-full rounded-lg ${index === 2 ? "bg-gradient-to-t from-[#1d4ed8] to-[#60a5fa]" : "bg-[#edf2f8]"}`}
-                            style={{ height }}
-                          />
-                          <span className="text-[10px] text-[#64748b]">{["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][index]}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                </div>
-
-                <div className="mt-4 grid gap-4 xl:grid-cols-[0.8fr_1.2fr]">
-                  <section className="rounded-2xl border border-[#e5edf8] bg-white p-5">
-                    <div className="mb-5 flex items-center justify-between">
-                      <p className="text-xs font-semibold text-[#14231d]">Sales distribution</p>
-                      <span className="rounded-lg border border-[#e5edf8] px-3 py-2 text-[11px] font-bold text-[#64748b]">Monthly</span>
-                    </div>
-                    <div className="grid grid-cols-3 gap-3 text-xs">
-                      {["Website", "Mobile App", "Other"].map((item, index) => (
-                        <div key={item}>
-                          <p className="mb-2 text-[#64748b]">{item}</p>
-                          <p className="font-display text-base font-black text-[#14231d]">{["$374.82", "$241.60", "$213.42"][index]}</p>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mx-auto mt-6 h-28 w-28 rounded-full bg-[conic-gradient(#2563eb_0_38%,#22c7c8_38%_72%,#e5edf8_72%_100%)] p-5">
-                      <div className="h-full w-full rounded-full bg-white" />
-                    </div>
-                  </section>
-
-                  <section className="rounded-2xl border border-[#e5edf8] bg-white p-5">
-                    <div className="mb-5 flex items-center justify-between">
-                      <p className="text-xs font-semibold text-[#14231d]">List of integrations</p>
-                      <span className="text-xs font-black text-[#1d4ed8]">See all</span>
-                    </div>
-                    <div className="space-y-4">
-                      {[
-                        ["Stripe", "Payment", "40%", "$650.00"],
-                        ["Shopify", "Store", "80%", "$720.50"],
-                        ["WhatsApp", "Channel", "62%", "$432.25"],
-                      ].map(([app, type, rate, profit]) => (
-                        <div className="grid grid-cols-[1fr_0.8fr_0.8fr_0.8fr] items-center gap-3 text-xs" key={app}>
-                          <p className="font-black text-[#14231d]">{app}</p>
-                          <p className="text-[#64748b]">{type}</p>
-                          <div className="h-1.5 rounded-full bg-[#e5edf8]">
-                            <div className="h-1.5 rounded-full bg-[#2563eb]" style={{ width: rate }} />
-                          </div>
-                          <p className="text-right font-bold text-[#64748b]">{profit}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                </div>
-              </div>
-            </main>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#f7fbff] px-5 pb-20 pt-36 sm:px-10 sm:pt-40">
-      <div className="absolute left-[-8rem] top-[-6rem] h-[26rem] w-[26rem] rounded-full bg-[#93c5fd]/35 blur-3xl" />
-      <div className="absolute right-[-8rem] top-24 h-[28rem] w-[28rem] rounded-full bg-[#d577aa]/22 blur-3xl" />
-      <div className="relative mx-auto max-w-[1440px]">
-        <div className="mx-auto mb-12 max-w-5xl text-center">
-          <h1 className="mx-auto mb-6 max-w-5xl font-display text-5xl font-black leading-[1.02] tracking-[-0.06em] text-[#14231d] sm:text-6xl lg:text-[84px]">
-            Run your social business from one intelligent CMS.
-          </h1>
-          <p className="mx-auto mb-8 max-w-2xl text-base leading-8 text-[#625a73] sm:text-lg">
-            We configure a trained AI model to answer questions, create orders, guide payments, and collect feedback across the channels your customers already use.
-          </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button>Request setup</Button>
-            <a
-              className="inline-flex items-center gap-2 font-display text-sm font-black text-[#14231d] underline underline-offset-4"
-              href="#pricing"
-            >
-              See pricing
-              <Icon name="arrow" className="h-4 w-4" />
-            </a>
+    <section className="bg-[#f7fbff] px-0 pb-0 pt-0 sm:px-2 sm:pb-2 sm:pt-2">
+      <div className="relative overflow-hidden rounded-none bg-[#11276f] px-4 pb-0 pt-28 sm:rounded-[1.5rem] sm:px-10 sm:pt-40">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_16%,rgba(84,126,255,0.42)_0%,rgba(49,86,214,0.24)_26%,rgba(18,40,114,0)_58%),linear-gradient(180deg,#2749cd_0%,#16358f_42%,#0a184f_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,20,67,0.28)_0%,rgba(9,20,67,0)_18%,rgba(9,20,67,0.12)_50%,rgba(9,20,67,0)_82%,rgba(9,20,67,0.28)_100%)]" />
+          <div className="hero-glass-pane absolute inset-0 overflow-hidden" />
+          <div className="absolute bottom-[-11.5rem] left-[-8rem] h-[23rem] w-[25rem] rotate-[33deg] rounded-[3rem] bg-white/7 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
+          <div className="absolute bottom-[-11.5rem] right-[-8rem] h-[23rem] w-[25rem] -rotate-[33deg] rounded-[3rem] bg-white/7 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
+        </div>
+        <div className="relative z-10">
+
+
+          {/* Hero text content */}
+            <div className="mx-auto mb-10 max-w-5xl text-center sm:mb-12">
+              <h1 className="mx-auto mb-5 max-w-5xl pt-4 font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.06em] text-white sm:mb-6 sm:pt-6 sm:text-6xl lg:text-[84px]">
+                Run your social business from one intelligent CMS.
+              </h1>
+              <p className="mx-auto mb-7 max-w-2xl text-base leading-7 text-white/60 sm:mb-8 sm:leading-8 sm:text-lg">
+                We configure a trained AI model to answer questions, create orders, guide payments, and collect feedback across the channels your customers already use.
+              </p>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <a
+                className="group inline-flex items-center gap-1.5 rounded-full bg-white px-1.5 py-1.5 font-body text-sm font-black tracking-[-0.01em] text-[#0b2a74] shadow-[0_18px_34px_rgba(0,0,0,0.25)] transition duration-200 hover:bg-[#f0f4ff] active:scale-[0.98]"
+                href="#pricing"
+              >
+                <span className="pl-5">Request setup</span>
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-[#2563eb] text-white transition-colors group-hover:bg-[#1d4ed8]">
+                  <Icon name="arrow" className="h-3.5 w-3.5" />
+                </span>
+              </a>
+              <a
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-1.5 py-1.5 font-body text-sm font-black text-white backdrop-blur-sm transition duration-200 hover:bg-white/10 active:scale-[0.98]"
+                href="#pricing"
+              >
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-white text-[#0b2a74]">
+                  <Icon name="dollar" className="h-3.5 w-3.5" />
+                </span>
+                <span className="pr-5">See pricing plans</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Dashboard image */}
+          <div className="relative mx-auto max-w-[1380px] max-h-[750px] overflow-visible px-4">
+            <div className="relative z-10 overflow-hidden rounded-t-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md">
+              <img
+                alt="Zeylun Automate CMS Dashboard"
+                className="w-full rounded-t-xl object-cover object-top"
+                src="/images/Zyelun-automate-CMS-dashboard.png"
+              />
+            </div>
           </div>
         </div>
-        <CmsDashboard />
       </div>
     </section>
   );
@@ -515,7 +521,7 @@ function Intro() {
     <section className="px-5 py-20 sm:px-10">
       <div className="mx-auto grid max-w-[1180px] gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="relative min-h-[620px] overflow-visible bg-transparent p-0">
-          <div className="absolute -bottom-10 -top-10 left-1/2 w-[82%] -translate-x-1/2 bg-[linear-gradient(#dbeafe_1px,transparent_1px),linear-gradient(90deg,#dbeafe_1px,transparent_1px)] bg-[size:32px_32px] opacity-45 [mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%),linear-gradient(180deg,transparent_0%,black_10%,black_90%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%),linear-gradient(180deg,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-composite:source-in]" />
+          <div className="absolute bottom-10 top-10 left-1/2 w-[82%] -translate-x-1/2 bg-[radial-gradient(#1d4ed8_2px,transparent_2px)] bg-[size:24px_24px] opacity-25 [mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%),linear-gradient(180deg,transparent_0%,black_10%,black_90%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_88%,transparent_100%),linear-gradient(180deg,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-composite:source-in]" />
           <div className="relative mx-auto grid max-w-[420px] grid-cols-2 gap-3 sm:gap-4">
             {[
               [
@@ -539,14 +545,17 @@ function Intro() {
                 "ml-2 mt-5 h-[280px]",
               ],
             ].map(([title, body, position], index) => (
-              <div className={`rounded-[1.75rem] bg-[#dbeafe] p-5 text-[#14231d] shadow-[0_18px_45px_rgba(37,99,235,0.08)] ${position}`} key={title}>
-                <div className="mb-5 flex items-center gap-3">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white font-display text-sm font-black text-[#2563eb] shadow-[0_10px_24px_rgba(37,99,235,0.12)]">
-                    {index + 1}
-                  </div>
-                  <p className="font-display text-lg font-black tracking-[-0.03em]">{title}</p>
+              <div
+                className={`relative overflow-hidden rounded-[1.75rem] bg-[linear-gradient(335deg,#0b2a74_0%,#123a95_42%,#1d4ed8_100%)] p-5 text-white shadow-[0_18px_45px_rgba(37,99,235,0.16)] ${position}`}
+                key={title}
+              >
+                <div className="relative z-10">
+                  <p className="mb-2 font-display text-lg font-black tracking-[-0.03em] text-white/75">{title}</p>
+                  <p className="text-sm leading-6 text-white/75">{body}</p>
                 </div>
-                <p className="text-sm leading-7 text-[#475569]">{body}</p>
+                <div className="pointer-events-none absolute bottom-[-1.65rem] right-3 font-display text-[7rem] font-black leading-none tracking-[-0.08em] text-white/40">
+                  {index + 1}
+                </div>
               </div>
             ))}
           </div>
@@ -557,7 +566,7 @@ function Intro() {
             Every customer conversation becomes a trackable business action.
           </h2>
           <p className="mb-8 max-w-2xl text-base leading-8 text-[#6f667f] sm:text-lg">
-            SociaFlow is not a self-serve chatbot template. We configure the model, CMS views, and workflow rules around how your business sells, supports, collects payments, and follows up with customers.
+            Zeylun Automate is a hands-on automation system built around the real way your team operates. We map how customers ask questions, how orders are confirmed, how payments are verified, and how follow-ups are handled after the sale, then configure the AI model and CMS around those exact workflows. That means every conversation can move through a clear operational path instead of living as scattered messages across different social channels.
           </p>
           <div className="flex flex-wrap gap-x-7 gap-y-3">
             {["Always-on support", "Custom workflow", "CMS visibility"].map((item) => (
@@ -577,25 +586,36 @@ function Services() {
   return (
     <section className="px-5 py-20 sm:px-10" id="services">
       <div className="mx-auto max-w-[1180px]">
-        <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1fr] lg:items-end">
-          <h2 className="font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
-            Built for the work that happens inside social DMs.
+        <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center text-center">
+          <h2 className="mb-5 font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
+            Benefits that make social selling easier to manage.
           </h2>
           <p className="text-base leading-8 text-[#6f667f] sm:text-lg">
-            The dashboard gives your team a clear operational layer while the trained AI handles routine steps in the background.
+            Zeylun Automate gives businesses a clearer, faster, and more reliable way to handle customer communication across social channels while keeping the entire workflow visible to the team.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {serviceCards.map((item) => (
+          {serviceCards.map((item, index) => (
             <article
-              className="group rounded-[2rem] bg-white p-6 shadow-[0_18px_45px_rgba(37,99,235,0.07)] transition duration-200 hover:-translate-y-1"
+              className="flex min-h-[210px] flex-col rounded-[1.35rem] border border-[#dbeafe] bg-white p-2.5 text-[#14231d] shadow-[0_18px_45px_rgba(37,99,235,0.07)]"
               key={item.title}
             >
-              <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eff6ff] text-[#1d4ed8] transition group-hover:bg-[#2563eb] group-hover:text-white">
-                <Icon name={item.icon} />
+              <div className={`rounded-[1.1rem] p-5 ${index === 2 ? 'bg-[linear-gradient(335deg,#0b2a74_0%,#123a95_42%,#1d4ed8_100%)]' : 'bg-[#f8fafc]'}`}>
+                <div className={`mb-4 flex h-8 w-8 items-center justify-center rounded-full text-white ${index === 2 ? 'bg-white/20' : 'bg-[#2563eb]'}`}>
+                  <BenefitIcon name={item.icon} className="h-4 w-4" />
+                </div>
+                <h3 className={`mb-3 whitespace-pre-line font-display text-[1.35rem] font-black tracking-[-0.04em] ${index === 2 ? 'text-white/75' : 'text-[#14231d]'}`}>{item.title}</h3>
+                <p className={`w-full text-sm leading-6 min-h-[120px] ${index === 2 ? 'text-white/75' : 'text-[#6f667f]'}`}>{item.bodyLines.join(" ")}</p>
               </div>
-              <h3 className="mb-3 font-display text-xl font-black tracking-[-0.03em] text-[#14231d]">{item.title}</h3>
-              <p className="text-sm leading-7 text-[#6f667f]">{item.body}</p>
+              <a
+                className="group mt-3 inline-flex cursor-pointer items-center gap-2 self-start rounded-full border border-[#bfdbfe] bg-white pl-1 pr-2 py-1 font-body text-xs font-semibold text-[#1d4ed8] transition-colors duration-300 ease-out hover:bg-[#2563eb] hover:text-white"
+                href="#pricing"
+              >
+                <span className="grid aspect-square h-6 shrink-0 place-items-center rounded-full bg-[#2563eb] text-white transition-colors duration-300 ease-out group-hover:bg-white group-hover:text-[#2563eb]">
+                  <Icon name="arrow" className="h-3 w-[0.95rem]" />
+                </span>
+                Learn more
+              </a>
             </article>
           ))}
         </div>
@@ -607,42 +627,39 @@ function Services() {
 function Channels() {
   return (
     <section className="px-5 py-20 sm:px-10" id="channels">
-      <div className="mx-auto grid max-w-[1180px] gap-10 rounded-[2.5rem] bg-white p-6 shadow-[0_24px_70px_rgba(37,99,235,0.08)] lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-10">
-        <div>
-          <h2 className="mb-5 max-w-xl font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
-            Connect the channels your customers already trust.
+      <div className="mx-auto max-w-[1180px] px-2 py-4 sm:px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="mb-5 font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
+            Integrates effortlessly with the tools you already use
           </h2>
-          <p className="max-w-2xl text-base leading-8 text-[#6f667f] sm:text-lg">
-            We support the social platforms businesses use for customer questions, order requests, receipts, and follow-ups.
+          <p className="mx-auto max-w-2xl text-base leading-8 text-[#6f667f] sm:text-lg">
+            Connect Zeylun Automate with the social platforms your team already relies on for customer conversations, payments, and follow-ups.
           </p>
         </div>
-        <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] bg-[#f8fbff]">
-          <svg className="absolute inset-0 h-full w-full text-[#2563eb]/35" fill="none" viewBox="0 0 560 360">
-            <path d="M280 180 C184 112 118 90 68 70" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
-            <path d="M280 180 C280 92 280 56 280 34" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
-            <path d="M280 180 C376 112 444 90 492 70" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
-            <path d="M280 180 C184 226 124 256 78 292" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
-            <path d="M280 180 C280 238 280 292 280 326" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
-            <path d="M280 180 C376 226 438 256 492 292" stroke="currentColor" strokeDasharray="7 9" strokeWidth="2" />
+
+        <div className="relative mx-auto mt-16 h-[320px] max-w-[900px] overflow-visible sm:h-[400px] lg:h-[470px]">
+          <svg className="absolute inset-0 h-full w-full text-[#7d9992]" fill="none" viewBox="0 0 900 470">
+            <path d="M90 410a360 360 0 0 1 720 0" opacity="0.48" stroke="currentColor" strokeWidth="1.2" />
+            <path d="M170 410a280 280 0 0 1 560 0" opacity="0.38" stroke="currentColor" strokeWidth="1.2" />
+            <path d="M250 410a200 200 0 0 1 400 0" opacity="0.32" stroke="currentColor" strokeWidth="1.2" />
+            <path d="M325 410a125 125 0 0 1 250 0" opacity="0.26" stroke="currentColor" strokeWidth="1.2" />
           </svg>
-          <div className="absolute left-1/2 top-1/2 z-10 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#14231d] font-display text-xl font-black text-white shadow-[0_22px_50px_rgba(20,35,29,0.2)]">
-            AI
-          </div>
-          {[
-            "left-[8%] top-[14%] rotate-[-10deg]",
-            "left-1/2 top-[5%] -translate-x-1/2 rotate-[6deg]",
-            "right-[8%] top-[14%] rotate-[11deg]",
-            "left-[10%] bottom-[13%] rotate-[7deg]",
-            "left-1/2 bottom-[5%] -translate-x-1/2 rotate-[-8deg]",
-            "right-[10%] bottom-[13%] rotate-[8deg]",
-          ].map((position, index) => (
-            <div
-              className={`absolute z-20 flex h-20 w-20 items-center justify-center rounded-[1.6rem] bg-white shadow-[0_18px_40px_rgba(37,99,235,0.12)] ${position}`}
-              key={channelLogos[index][0]}
-            >
-              <img alt={`${channelLogos[index][0]} logo`} className="h-11 w-11" src={channelLogos[index][1]} />
+
+          {integrationNodes.map((node) => (
+            <div className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 ${node.position}`} key={node.label}>
+              <div className="grid h-11 w-11 place-items-center rounded-full border border-[#d8e3de] bg-white shadow-[0_10px_24px_rgba(20,35,29,0.08)] sm:h-12 sm:w-12">
+                <img alt={`${node.label} logo`} className="h-4 w-4 sm:h-5 sm:w-5" src={node.src} />
+              </div>
             </div>
           ))}
+
+          <div className="absolute bottom-[-8%] left-1/2 z-20 -translate-x-1/2 sm:bottom-[-6%]">
+            <div className="flex h-[150px] w-[150px] flex-col items-center justify-center rounded-full border border-[#93c5fd]/40 bg-[linear-gradient(160deg,#2563eb_0%,#1d4ed8_48%,#0b2a74_100%)] px-5 pb-5 pt-5 text-center shadow-[0_18px_40px_rgba(37,99,235,0.24)] sm:h-[164px] sm:w-[164px]">
+              <p className="max-w-[112px] font-display text-[1.15rem] font-black leading-[1.08] tracking-[-0.04em] text-white/75 sm:text-[1.3rem]">
+                Zeylun Automate
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -658,7 +675,7 @@ function Workflow() {
             Configured first. Automated second.
           </h2>
           <p className="text-base leading-8 text-white/62 sm:text-lg">
-            Because every client has different products, rules, channels, and payment flows, we set up SociaFlow around your real operating environment.
+            Because every client has different products, rules, channels, and payment flows, we set up Zeylun Automate around your real operating environment.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-4">
@@ -666,7 +683,7 @@ function Workflow() {
             <article className="rounded-[2rem] bg-white/8 p-6 ring-1 ring-white/10" key={step}>
               <p className="mb-8 font-display text-5xl font-black tracking-[-0.06em] text-[#bfdbfe]">{step}</p>
               <h3 className="mb-4 font-display text-xl font-black tracking-[-0.03em]">{title}</h3>
-              <p className="text-sm leading-7 text-white/62">{body}</p>
+              <p className="text-sm leading-7 text-white/62 min-h-[140px]">{body}</p>
             </article>
           ))}
         </div>
@@ -678,35 +695,168 @@ function Workflow() {
 function Pricing() {
   return (
     <section className="px-5 py-20 sm:px-10" id="pricing">
-      <div className="mx-auto grid max-w-[1180px] gap-10 overflow-hidden rounded-[2.75rem] bg-[#f8fbff] p-6 shadow-[0_24px_70px_rgba(37,99,235,0.08)] lg:grid-cols-[1.05fr_0.95fr] lg:p-10">
-        <div>
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 font-display text-xs font-black text-[#1d4ed8]">
-            <Icon name="clock" className="h-4 w-4" />
-            Custom implementation
-          </div>
-          <h2 className="mb-6 max-w-xl font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
-            Starting at $50, then scaled to your workflow.
+      <div className="mx-auto max-w-[1180px]">
+        <h2 className="sr-only">
+          Zeylun pricing plans: Starter, Growth, and Pro with features and monthly support
+        </h2>
+
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <h2 className="mb-6 font-display text-4xl font-black tracking-[-0.05em] text-[#14231d] sm:text-5xl">
+            Pricing plans built around your stage and message volume.
           </h2>
-          <p className="mb-8 max-w-2xl text-base leading-8 text-[#6f667f] sm:text-lg">
-            Clients pay for setup and configuration before launch. Final pricing varies based on business scale, workflow complexity, number of channels, and automation depth.
+          <p className="mx-auto max-w-3xl text-base leading-8 text-[#6f667f] sm:text-lg">
+            Follow the same operational approach at different depths, from first-time automation setup to full multi-channel AI handling with CRM and ongoing support.
           </p>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <Button>Request a quote</Button>
-            <Button variant="secondary">Discuss workflow</Button>
-          </div>
         </div>
-        <div className="rounded-[2rem] bg-white p-5 shadow-[0_14px_34px_rgba(37,99,235,0.07)]">
-          {pricingRows.map(([label, value]) => (
-            <div className="flex items-start justify-between gap-4 border-b border-[#dbeafe] py-4 last:border-b-0" key={label}>
-              <span className="text-sm font-bold text-[#6f667f]">{label}</span>
-              <span className="max-w-[14rem] text-right font-display text-sm font-black text-[#14231d]">{value}</span>
-            </div>
+
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {pricingPlans.map((plan) => (
+            <article
+              className={`flex h-full flex-col rounded-[1.85rem] bg-white p-3 shadow-[0_18px_45px_rgba(37,99,235,0.07)] ring-1 ${
+                plan.featured
+                  ? "ring-[#dbeafe] shadow-[0_24px_55px_rgba(37,99,235,0.16)]"
+                  : "ring-[#dbeafe]"
+              }`}
+              key={plan.name}
+            >
+              <div
+                className={`mb-2.5 flex flex-1 flex-col rounded-[1.35rem] p-3 ${
+                  plan.featured
+                    ? "bg-[linear-gradient(180deg,#2850c9_0%,#1d3f9c_48%,#173789_100%)]"
+                    : "bg-[#f8fafc]"
+                }`}
+              >
+                <div className="mb-2.5 flex items-start justify-between gap-2.5">
+                  <div
+                    className={`flex h-11 w-11 items-center justify-center rounded-full text-white shadow-[0_12px_22px_rgba(37,99,235,0.24)] ${
+                      plan.featured ? "bg-[#4a6fe2]" : "bg-[#2563eb]"
+                    }`}
+                  >
+                    <Icon name={plan.icon} className="h-4 w-4" />
+                  </div>
+                  {plan.badge ? (
+                    <span
+                      className={`inline-flex rounded-full px-3 py-1 font-body text-[11px] font-black ${
+                        plan.featured ? "bg-white/14 text-white/75" : "bg-[#eff6ff] text-[#1d4ed8]"
+                      }`}
+                    >
+                      {plan.badge}
+                    </span>
+                  ) : null}
+                </div>
+
+                <div className="mb-2.5">
+                  <h3
+                    className={`max-w-[13rem] font-display text-[1.95rem] font-black leading-[1.08] tracking-[-0.05em] ${
+                      plan.featured ? "text-white/75" : "text-[#14231d]"
+                    }`}
+                  >
+                    {plan.name}
+                  </h3>
+                  <p className={`mt-1.5 text-sm leading-6 ${plan.featured ? "text-white/75" : "text-[#6f667f]"}`}>
+                    {plan.tagline}
+                  </p>
+                </div>
+
+                <p
+                  className={`font-display text-[1.8rem] font-black tracking-[-0.04em] ${
+                    plan.featured ? "text-white/75" : "text-[#14231d]"
+                  }`}
+                >
+                  {plan.price}
+                </p>
+                <p
+                  className={`mt-1 text-xs font-semibold uppercase tracking-[0.08em] ${
+                    plan.featured ? "text-white/75" : "text-[#8a94a6]"
+                  }`}
+                >
+                  {plan.label}
+                </p>
+
+                <div className="mt-2.5 flex flex-1 flex-col gap-3">
+                  {plan.sections.map((section) => (
+                    <div key={section.title}>
+                      <p
+                        className={`mb-2 text-[10px] font-black uppercase tracking-[0.12em] ${
+                          plan.featured ? "text-white/75" : "text-[#8a94a6]"
+                        }`}
+                      >
+                        {section.title}
+                      </p>
+                      <div className="space-y-2.5">
+                        {section.items.map((item) => (
+                          <div
+                            className={`flex items-start gap-2.5 text-[13px] leading-5 ${
+                              plan.featured ? "text-white/75" : "text-[#6f667f]"
+                            }`}
+                            key={item.text}
+                          >
+                            <span
+                              className={`mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full ${
+                                item.ai
+                                  ? plan.featured
+                                    ? "bg-[#93c5fd]"
+                                    : "bg-[#378add]"
+                                  : plan.featured
+                                    ? "bg-white/45"
+                                    : "bg-[#94a3b8]"
+                              }`}
+                            />
+                            <span>
+                              {item.text}
+                              {item.ai ? (
+                                <span
+                                  className={`ml-2 inline-flex rounded-md px-1.5 py-[1px] text-[10px] font-black uppercase tracking-[0.06em] ${
+                                    plan.featured
+                                      ? "bg-white/14 text-white/75"
+                                      : "bg-[#eff6ff] text-[#1d4ed8]"
+                                  }`}
+                                >
+                                  AI
+                                </span>
+                              ) : null}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-auto pt-0">
+                <a
+                  className="group inline-flex items-center gap-2 self-start rounded-full border border-[#bfdbfe] bg-white pl-1 pr-3 py-1 font-body text-xs font-semibold text-[#1d4ed8] transition-colors duration-300 ease-out hover:bg-[#2563eb] hover:text-white"
+                  href="#pricing"
+                >
+                  <span className="grid aspect-square h-7 shrink-0 place-items-center rounded-full bg-[#2563eb] text-white transition-colors duration-300 ease-out group-hover:bg-white group-hover:text-[#2563eb]">
+                    <Icon name="arrow" className="h-3 w-[0.95rem]" />
+                  </span>
+                  Learn more
+                </a>
+              </div>
+            </article>
           ))}
-          <div className="mt-5 rounded-[1.5rem] bg-[#14231d] p-5 text-white">
-            <p className="mb-2 font-display text-lg font-black tracking-[-0.03em]">What you get</p>
-            <p className="text-sm leading-7 text-white/62">
-              A trained AI model, connected social workflows, CMS visibility, and a setup shaped around your business environment.
+        </div>
+
+        <div className="mt-4 flex flex-col gap-4 rounded-[1.85rem] border border-[#dbeafe] bg-[#f8fbff] px-5 py-5 shadow-[0_18px_45px_rgba(37,99,235,0.07)] lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <p className="font-display text-lg font-black tracking-[-0.03em] text-[#14231d]">
+              Monthly support & maintenance
             </p>
+            <p className="mt-1 text-sm leading-6 text-[#6f667f]">
+              Keep your system running smoothly after setup with prompt tuning, small updates, and ongoing monitoring.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {maintenancePills.map((item) => (
+              <span
+                className="rounded-full border border-[#dbeafe] bg-white px-3 py-1.5 font-body text-[11px] font-semibold text-[#6f667f]"
+                key={item}
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -718,8 +868,8 @@ function Footer() {
   return (
     <footer className="px-5 pb-10 sm:px-10">
       <div className="mx-auto flex max-w-[1180px] flex-col justify-between gap-5 border-t border-[#bfdbfe] pt-8 text-sm text-[#6f667f] md:flex-row">
-        <p className="font-display font-black tracking-[-0.03em] text-[#14231d]">SociaFlow AI</p>
-        <p>&copy; 2026 SociaFlow AI. Custom social automation for modern businesses.</p>
+        <p className="font-display font-black tracking-[-0.03em] text-[#14231d]">Zeylun Automate</p>
+        <p>&copy; 2026 Zeylun Automate. Custom social automation for modern businesses.</p>
       </div>
     </footer>
   );
@@ -734,7 +884,6 @@ export default function Home() {
         <Intro />
         <Services />
         <Channels />
-        <Workflow />
         <Pricing />
       </main>
       <Footer />
