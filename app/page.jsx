@@ -459,7 +459,7 @@ function DashboardStat({ label, value, change }) {
 function Hero() {
   return (
     <section className="bg-[#f7fbff] px-0 pb-0 pt-0 sm:px-2 sm:pb-2 sm:pt-2">
-      <div className="relative overflow-hidden rounded-none bg-[#11276f] px-4 pb-0 pt-28 sm:rounded-[1.5rem] sm:px-10 sm:pt-40">
+      <div className="relative overflow-hidden rounded-none bg-[#11276f] px-0 pb-0 pt-28 sm:rounded-[1.5rem] sm:px-10 sm:pt-40">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_16%,rgba(84,126,255,0.42)_0%,rgba(49,86,214,0.24)_26%,rgba(18,40,114,0)_58%),linear-gradient(180deg,#2749cd_0%,#16358f_42%,#0a184f_100%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,20,67,0.28)_0%,rgba(9,20,67,0)_18%,rgba(9,20,67,0.12)_50%,rgba(9,20,67,0)_82%,rgba(9,20,67,0.28)_100%)]" />
@@ -471,7 +471,7 @@ function Hero() {
 
 
           {/* Hero text content */}
-            <div className="mx-auto mb-10 max-w-5xl text-center sm:mb-12">
+            <div className="mx-auto mb-10 max-w-5xl px-4 text-center sm:mb-12 sm:px-0">
               <h1 className="mx-auto mb-5 max-w-5xl pt-4 font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.06em] text-white sm:mb-6 sm:pt-6 sm:text-6xl lg:text-[84px]">
                 Run your social business from one intelligent CMS.
               </h1>
@@ -501,7 +501,7 @@ function Hero() {
             </div>
   
             {/* Dashboard image */}
-            <div className="relative mr-[-1rem] ml-auto w-[78vw] max-w-none max-h-[750px] overflow-hidden pl-0 pr-0 sm:mx-auto sm:mr-auto sm:max-w-[1380px] sm:overflow-visible sm:px-4">
+            <div className="relative ml-auto w-[78vw] max-w-none max-h-[750px] overflow-hidden pl-0 pr-0 sm:mx-auto sm:mr-auto sm:max-w-[1380px] sm:overflow-visible sm:px-4">
               <div className="relative z-10 overflow-hidden rounded-tl-[1.35rem] rounded-tr-none border border-white/10 bg-white p-3 sm:rounded-t-2xl sm:border-white/15 sm:bg-white/10 sm:p-5 sm:backdrop-blur-md">
                 <img
                   alt="Zeylun Automate CMS Dashboard"
