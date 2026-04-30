@@ -965,7 +965,7 @@ function Pricing() {
               System Operation & Optimization (Required)
             </p>
             <p className="mt-1 text-sm leading-6 text-[#6f667f]">
-              Keeps your AI automation running, improving, and actively managed.
+              Keeps your system running smoothly after setup with prompt tuning, small updates, ongoing monitoring, and continuous AI-powered improvements.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
