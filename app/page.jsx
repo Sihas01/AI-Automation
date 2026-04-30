@@ -89,7 +89,7 @@ const pricingPlans = [
     name: "Starter",
     tagline: "For small businesses getting their first automation",
     price: "LKR 28,000",
-    label: "one-time setup fee",
+    label: "Initial setup fee",
     icon: "message",
     sections: [
       {
@@ -128,7 +128,7 @@ const pricingPlans = [
     name: "Growth",
     tagline: "For businesses handling daily inquiries at scale",
     price: "LKR 58,000",
-    label: "one-time setup fee",
+    label: "Initial setup fee",
     featured: true,
     badge: "Most popular",
     icon: "eye",
@@ -174,7 +174,7 @@ const pricingPlans = [
     name: "Pro",
     tagline: "For high-volume businesses, institutes & agencies",
     price: "LKR 105,000",
-    label: "one-time setup fee",
+    label: "Initial setup fee",
     icon: "shield",
     sections: [
       {
@@ -421,11 +421,10 @@ function Header() {
             item.type === "dropdown" ? (
               <div className="group relative" key={item.label}>
                 <button
-                  className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-body text-xs font-bold transition ${
-                    index === 0
+                  className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-body text-xs font-bold transition ${index === 0
                       ? "bg-[#2563eb] text-white shadow-[inset_0_-2px_0_rgba(0,0,0,0.12)]"
                       : "text-[#3b3f52] hover:bg-[#eff6ff] hover:text-[#1d4ed8]"
-                  }`}
+                    }`}
                   type="button"
                 >
                   {item.label}
@@ -486,111 +485,107 @@ function Header() {
             Request setup
           </a>
         </div>
+        <button
+          className="flex h-10 w-10 items-center justify-center text-white transition duration-300 hover:text-white/75 lg:hidden"
+          onClick={() => setMobileNavOpen(true)}
+          type="button"
+        >
+          <span className="sr-only">Open navigation</span>
+          <Icon name="menu" className="h-5 w-5" />
+        </button>
+        <>
           <button
-            className="flex h-10 w-10 items-center justify-center text-white transition duration-300 hover:text-white/75 lg:hidden"
-            onClick={() => setMobileNavOpen(true)}
+            aria-label="Close navigation"
+            className={`fixed inset-0 z-40 bg-[#0b2a74]/12 backdrop-blur-[2px] transition duration-300 lg:hidden ${mobileNavOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+              }`}
+            onClick={closeMobileNav}
             type="button"
+          />
+          <div
+            className={`fixed inset-y-0 right-0 z-50 flex w-[75vw] max-w-[26rem] min-w-[17rem] flex-col border-l border-white/75 bg-white p-4 shadow-[-18px_0_50px_rgba(3,10,35,0.22)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${mobileNavOpen ? "translate-x-0" : "translate-x-full"
+              }`}
           >
-            <span className="sr-only">Open navigation</span>
-            <Icon name="menu" className="h-5 w-5" />
-          </button>
-          <>
-            <button
-              aria-label="Close navigation"
-              className={`fixed inset-0 z-40 bg-[#0b2a74]/12 backdrop-blur-[2px] transition duration-300 lg:hidden ${
-                mobileNavOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-              }`}
-              onClick={closeMobileNav}
-              type="button"
-            />
-            <div
-              className={`fixed inset-y-0 right-0 z-50 flex w-[75vw] max-w-[26rem] min-w-[17rem] flex-col border-l border-white/75 bg-white p-4 shadow-[-18px_0_50px_rgba(3,10,35,0.22)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${
-                mobileNavOpen ? "translate-x-0" : "translate-x-full"
-              }`}
-            >
-              <div className="mb-5 flex items-center justify-between">
-                <div>
-                  <p className="font-display text-lg font-black tracking-[-0.04em] text-[#14231d]">Zeylun Automate</p>
-                  <p className="text-xs text-[#6f667f]">Navigation</p>
-                </div>
-                <button
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#dbeafe] bg-[#f8fbff] text-[#1d4ed8] transition hover:bg-white"
-                  onClick={closeMobileNav}
-                  type="button"
-                >
-                  <span className="sr-only">Close navigation</span>
-                  <Icon name="close" className="h-4 w-4" />
-                </button>
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <p className="font-display text-lg font-black tracking-[-0.04em] text-[#14231d]">Zeylun Automate</p>
+                <p className="text-xs text-[#6f667f]">Navigation</p>
               </div>
+              <button
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#dbeafe] bg-[#f8fbff] text-[#1d4ed8] transition hover:bg-white"
+                onClick={closeMobileNav}
+                type="button"
+              >
+                <span className="sr-only">Close navigation</span>
+                <Icon name="close" className="h-4 w-4" />
+              </button>
+            </div>
 
-              <div className="flex flex-1 flex-col gap-2 overflow-y-auto pr-1">
-                {navItems.map((item) =>
-                  item.type === "dropdown" ? (
-                    <div className="rounded-[1.35rem] border border-[#dbeafe] bg-[#f8fbff] p-2" key={item.label}>
-                      <button
-                        className="flex w-full items-center justify-between rounded-[1rem] px-3 py-3 text-left font-body text-sm font-bold text-[#14231d] transition hover:bg-white"
-                        onClick={() => setMobileServicesOpen((value) => !value)}
-                        type="button"
-                      >
-                        <span>{item.label}</span>
-                        <span
-                          className={`grid h-8 w-8 place-items-center rounded-full bg-[#2563eb] text-white transition-transform duration-300 ${
-                            mobileServicesOpen ? "rotate-180" : ""
+            <div className="flex flex-1 flex-col gap-2 overflow-y-auto pr-1">
+              {navItems.map((item) =>
+                item.type === "dropdown" ? (
+                  <div className="rounded-[1.35rem] border border-[#dbeafe] bg-[#f8fbff] p-2" key={item.label}>
+                    <button
+                      className="flex w-full items-center justify-between rounded-[1rem] px-3 py-3 text-left font-body text-sm font-bold text-[#14231d] transition hover:bg-white"
+                      onClick={() => setMobileServicesOpen((value) => !value)}
+                      type="button"
+                    >
+                      <span>{item.label}</span>
+                      <span
+                        className={`grid h-8 w-8 place-items-center rounded-full bg-[#2563eb] text-white transition-transform duration-300 ${mobileServicesOpen ? "rotate-180" : ""
                           }`}
-                        >
-                          <Icon name="chevronDown" className="h-3.5 w-3.5" />
-                        </span>
-                      </button>
-                      <div
-                        className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                          mobileServicesOpen ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0"
-                        }`}
                       >
-                        <div className="mt-1 space-y-2 pb-2">
-                          {serviceIndustries.map((service) => (
-                            <a
-                              className="ml-4 block w-[calc(100%-1rem)] rounded-[1rem] border border-[#dbeafe] bg-white px-4 py-3 text-sm font-semibold text-[#5f6880] transition hover:border-[#93c5fd] hover:text-[#14231d]"
-                              href="#pricing"
-                              key={service.title}
-                              onClick={closeMobileNav}
-                            >
-                              {service.title}
-                            </a>
-                          ))}
-                        </div>
+                        <Icon name="chevronDown" className="h-3.5 w-3.5" />
+                      </span>
+                    </button>
+                    <div
+                      className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileServicesOpen ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0"
+                        }`}
+                    >
+                      <div className="mt-1 space-y-2 pb-2">
+                        {serviceIndustries.map((service) => (
+                          <a
+                            className="ml-4 block w-[calc(100%-1rem)] rounded-[1rem] border border-[#dbeafe] bg-white px-4 py-3 text-sm font-semibold text-[#5f6880] transition hover:border-[#93c5fd] hover:text-[#14231d]"
+                            href="#pricing"
+                            key={service.title}
+                            onClick={closeMobileNav}
+                          >
+                            {service.title}
+                          </a>
+                        ))}
                       </div>
                     </div>
-                  ) : (
-                    <a
-                      className="flex items-center justify-between rounded-[1.35rem] border border-[#dbeafe] bg-white px-4 py-3 font-body text-sm font-bold text-[#14231d] transition hover:bg-[#f8fbff]"
-                      href={item.href}
-                      key={item.label}
-                      onClick={closeMobileNav}
-                    >
-                      {item.label}
-                      <span className="grid h-8 w-8 place-items-center rounded-full bg-[#eff6ff] text-[#2563eb]">
-                        <Icon name="arrow" className="h-3.5 w-3.5" />
-                      </span>
-                    </a>
-                  )
-                )}
-              </div>
-
-              <div className="mt-4 grid gap-2">
-                <a
-                  className="rounded-full bg-[#2563eb] px-4 py-3 text-center font-body text-sm font-bold text-white shadow-[0_16px_30px_rgba(37,99,235,0.24)] transition hover:bg-[#1d4ed8]"
-                  href="#pricing"
-                  onClick={closeMobileNav}
-                >
-                  Request setup
-                </a>
-              </div>
+                  </div>
+                ) : (
+                  <a
+                    className="flex items-center justify-between rounded-[1.35rem] border border-[#dbeafe] bg-white px-4 py-3 font-body text-sm font-bold text-[#14231d] transition hover:bg-[#f8fbff]"
+                    href={item.href}
+                    key={item.label}
+                    onClick={closeMobileNav}
+                  >
+                    {item.label}
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-[#eff6ff] text-[#2563eb]">
+                      <Icon name="arrow" className="h-3.5 w-3.5" />
+                    </span>
+                  </a>
+                )
+              )}
             </div>
-          </>
-        </div>
-      </header>
-    );
-  }
+
+            <div className="mt-4 grid gap-2">
+              <a
+                className="rounded-full bg-[#2563eb] px-4 py-3 text-center font-body text-sm font-bold text-white shadow-[0_16px_30px_rgba(37,99,235,0.24)] transition hover:bg-[#1d4ed8]"
+                href="#pricing"
+                onClick={closeMobileNav}
+              >
+                Request setup
+              </a>
+            </div>
+          </div>
+        </>
+      </div>
+    </header>
+  );
+}
 
 function DashboardStat({ label, value, change }) {
   return (
@@ -622,13 +617,13 @@ function Hero() {
 
 
           {/* Hero text content */}
-            <RevealOnScroll className="mx-auto mb-10 max-w-5xl px-4 text-center sm:mb-12 sm:px-0">
-              <h1 className="mx-auto mb-5 max-w-5xl pt-4 font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.06em] text-white sm:mb-6 sm:pt-6 sm:text-6xl lg:text-[84px]">
-                Run your social business from one intelligent CMS.
-              </h1>
-              <p className="mx-auto mb-7 max-w-2xl text-base leading-7 text-white/60 sm:mb-8 sm:leading-8 sm:text-lg">
-                We configure a trained AI model to answer questions, create orders, guide payments, and collect feedback across the channels your customers already use.
-              </p>
+          <RevealOnScroll className="mx-auto mb-10 max-w-5xl px-4 text-center sm:mb-12 sm:px-0">
+            <h1 className="mx-auto mb-5 max-w-5xl pt-4 font-display text-5xl font-extrabold leading-[1.02] tracking-[-0.06em] text-white sm:mb-6 sm:pt-6 sm:text-6xl lg:text-[84px]">
+              Run your social business from one intelligent CMS.
+            </h1>
+            <p className="mx-auto mb-7 max-w-2xl text-base leading-7 text-white/60 sm:mb-8 sm:leading-8 sm:text-lg">
+              We configure a trained AI model to answer questions, create orders, guide payments, and collect feedback across the channels your customers already use.
+            </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
                 className="group inline-flex items-center gap-1.5 rounded-full bg-white px-1.5 py-1.5 font-body text-sm font-black tracking-[-0.01em] text-[#0b2a74] shadow-[0_18px_34px_rgba(0,0,0,0.25)] transition duration-200 hover:bg-[#f0f4ff] active:scale-[0.98]"
@@ -649,18 +644,18 @@ function Hero() {
                 <span className="pr-5">Pricing plans</span>
               </a>
             </div>
-            </RevealOnScroll>
-  
-            {/* Dashboard image */}
-            <RevealOnScroll className="relative ml-auto w-[78vw] max-w-none max-h-[750px] overflow-hidden pl-0 pr-0 sm:mx-auto sm:mr-auto sm:max-w-[1380px] sm:overflow-visible sm:px-4" delay={140}>
-              <div className="relative z-10 overflow-hidden rounded-tl-[1.35rem] rounded-tr-none border border-white/10 bg-white p-3 sm:rounded-t-2xl sm:border-white/15 sm:bg-white/10 sm:p-5 sm:backdrop-blur-md">
-                <img
-                  alt="Zeylun Automate CMS Dashboard"
-                  className="w-[128%] max-w-none origin-top-left rounded-tl-[1rem] rounded-tr-none object-cover object-top sm:w-full sm:rounded-t-xl"
-                  src="/images/Zyelun-automate-CMS-dashboard.png"
-                />
-              </div>
-            </RevealOnScroll>
+          </RevealOnScroll>
+
+          {/* Dashboard image */}
+          <RevealOnScroll className="relative ml-auto w-[78vw] max-w-none max-h-[750px] overflow-hidden pl-0 pr-0 sm:mx-auto sm:mr-auto sm:max-w-[1380px] sm:overflow-visible sm:px-4" delay={140}>
+            <div className="relative z-10 overflow-hidden rounded-tl-[1.35rem] rounded-tr-none border border-white/10 bg-white p-3 sm:rounded-t-2xl sm:border-white/15 sm:bg-white/10 sm:p-5 sm:backdrop-blur-md">
+              <img
+                alt="Zeylun Automate CMS Dashboard"
+                className="w-[128%] max-w-none origin-top-left rounded-tl-[1rem] rounded-tr-none object-cover object-top sm:w-full sm:rounded-t-xl"
+                src="/images/Zyelun-automate-CMS-dashboard.png"
+              />
+            </div>
+          </RevealOnScroll>
         </div>
       </div>
     </section>
@@ -848,129 +843,118 @@ function Pricing() {
           {pricingPlans.map((plan, index) => (
             <RevealOnScroll delay={index * 90} key={plan.name}>
               <article
-                className={`flex h-full flex-col rounded-[1.85rem] bg-white p-3 shadow-[0_18px_45px_rgba(37,99,235,0.07)] ring-1 ${
-                  plan.featured
+                className={`flex h-full flex-col rounded-[1.85rem] bg-white p-3 shadow-[0_18px_45px_rgba(37,99,235,0.07)] ring-1 ${plan.featured
                     ? "ring-[#dbeafe] shadow-[0_24px_55px_rgba(37,99,235,0.16)]"
                     : "ring-[#dbeafe]"
-                }`}
-              >
-              <div
-                className={`mb-2.5 flex flex-1 flex-col rounded-[1.35rem] p-3 ${
-                  plan.featured
-                    ? "bg-[linear-gradient(180deg,#2850c9_0%,#1d3f9c_48%,#173789_100%)]"
-                    : "bg-[#f8fafc]"
-                }`}
-              >
-                <div className="mb-2.5 flex items-start justify-between gap-2.5">
-                  <div
-                    className={`flex h-11 w-11 items-center justify-center rounded-full text-white shadow-[0_12px_22px_rgba(37,99,235,0.24)] ${
-                      plan.featured ? "bg-[#4a6fe2]" : "bg-[#2563eb]"
-                    }`}
-                  >
-                    <Icon name={plan.icon} className="h-4 w-4" />
-                  </div>
-                  {plan.badge ? (
-                    <span
-                      className={`inline-flex rounded-full px-3 py-1 font-body text-[11px] font-black ${
-                        plan.featured ? "bg-white/14 text-white/75" : "bg-[#eff6ff] text-[#1d4ed8]"
-                      }`}
-                    >
-                      {plan.badge}
-                    </span>
-                  ) : null}
-                </div>
-
-                <div className="mb-2.5">
-                  <h3
-                    className={`max-w-[13rem] font-display text-[1.95rem] font-black leading-[1.08] tracking-[-0.05em] ${
-                      plan.featured ? "text-white/75" : "text-[#14231d]"
-                    }`}
-                  >
-                    {plan.name}
-                  </h3>
-                  <p className={`mt-1.5 text-sm leading-6 ${plan.featured ? "text-white/75" : "text-[#6f667f]"}`}>
-                    {plan.tagline}
-                  </p>
-                </div>
-
-                <p
-                  className={`font-display text-[1.8rem] font-black tracking-[-0.04em] ${
-                    plan.featured ? "text-white/75" : "text-[#14231d]"
                   }`}
+              >
+                <div
+                  className={`mb-2.5 flex flex-1 flex-col rounded-[1.35rem] p-3 ${plan.featured
+                      ? "bg-[linear-gradient(180deg,#2850c9_0%,#1d3f9c_48%,#173789_100%)]"
+                      : "bg-[#f8fafc]"
+                    }`}
                 >
-                  {plan.price}
-                </p>
-                <p
-                  className={`mt-1 text-xs font-semibold uppercase tracking-[0.08em] ${
-                    plan.featured ? "text-white/75" : "text-[#8a94a6]"
-                  }`}
-                >
-                  {plan.label}
-                </p>
-
-                <div className="mt-2.5 flex flex-1 flex-col gap-3">
-                  {plan.sections.map((section) => (
-                    <div key={section.title}>
-                      <p
-                        className={`mb-2 text-[10px] font-black uppercase tracking-[0.12em] ${
-                          plan.featured ? "text-white/75" : "text-[#8a94a6]"
+                  <div className="mb-2.5 flex items-start justify-between gap-2.5">
+                    <div
+                      className={`flex h-11 w-11 items-center justify-center rounded-full text-white shadow-[0_12px_22px_rgba(37,99,235,0.24)] ${plan.featured ? "bg-[#4a6fe2]" : "bg-[#2563eb]"
                         }`}
-                      >
-                        {section.title}
-                      </p>
-                      <div className="space-y-2.5">
-                        {section.items.map((item) => (
-                          <div
-                            className={`flex items-start gap-2.5 text-[13px] leading-5 ${
-                              plan.featured ? "text-white/75" : "text-[#6f667f]"
-                            }`}
-                            key={item.text}
-                          >
-                            <span
-                              className={`mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full ${
-                                item.ai
-                                  ? plan.featured
-                                    ? "bg-[#93c5fd]"
-                                    : "bg-[#378add]"
-                                  : plan.featured
-                                    ? "bg-white/45"
-                                    : "bg-[#94a3b8]"
-                              }`}
-                            />
-                            <span>
-                              {item.text}
-                              {item.ai ? (
-                                <span
-                                  className={`ml-2 inline-flex rounded-md px-1.5 py-[1px] text-[10px] font-black uppercase tracking-[0.06em] ${
-                                    plan.featured
-                                      ? "bg-white/14 text-white/75"
-                                      : "bg-[#eff6ff] text-[#1d4ed8]"
-                                  }`}
-                                >
-                                  AI
-                                </span>
-                              ) : null}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
+                    >
+                      <Icon name={plan.icon} className="h-4 w-4" />
                     </div>
-                  ))}
-                </div>
-              </div>
+                    {plan.badge ? (
+                      <span
+                        className={`inline-flex rounded-full px-3 py-1 font-body text-[11px] font-black ${plan.featured ? "bg-white/14 text-white/75" : "bg-[#eff6ff] text-[#1d4ed8]"
+                          }`}
+                      >
+                        {plan.badge}
+                      </span>
+                    ) : null}
+                  </div>
 
-              <div className="mt-auto pt-0">
-                <a
-                  className="group inline-flex items-center gap-2 self-start rounded-full border border-[#bfdbfe] bg-white pl-1 pr-3 py-1 font-body text-xs font-semibold text-[#1d4ed8] transition-colors duration-300 ease-out hover:bg-[#2563eb] hover:text-white"
-                  href="#pricing"
-                >
-                  <span className="grid aspect-square h-7 shrink-0 place-items-center rounded-full bg-[#2563eb] text-white transition-colors duration-300 ease-out group-hover:bg-white group-hover:text-[#2563eb]">
-                    <Icon name="arrow" className="h-3 w-[0.95rem]" />
-                  </span>
-                  Learn more
-                </a>
-              </div>
-            </article>
+                  <div className="mb-2.5">
+                    <h3
+                      className={`max-w-[13rem] font-display text-[1.95rem] font-black leading-[1.08] tracking-[-0.05em] ${plan.featured ? "text-white/75" : "text-[#14231d]"
+                        }`}
+                    >
+                      {plan.name}
+                    </h3>
+                    <p className={`mt-1.5 text-sm leading-6 ${plan.featured ? "text-white/75" : "text-[#6f667f]"}`}>
+                      {plan.tagline}
+                    </p>
+                  </div>
+
+                  <p
+                    className={`font-display text-[1.8rem] font-black tracking-[-0.04em] ${plan.featured ? "text-white/75" : "text-[#14231d]"
+                      }`}
+                  >
+                    {plan.price}
+                  </p>
+                  <p
+                    className={`mt-1 text-xs font-semibold uppercase tracking-[0.08em] ${plan.featured ? "text-white/75" : "text-[#8a94a6]"
+                      }`}
+                  >
+                    {plan.label}
+                  </p>
+
+                  <div className="mt-2.5 flex flex-1 flex-col gap-3">
+                    {plan.sections.map((section) => (
+                      <div key={section.title}>
+                        <p
+                          className={`mb-2 text-[10px] font-black uppercase tracking-[0.12em] ${plan.featured ? "text-white/75" : "text-[#8a94a6]"
+                            }`}
+                        >
+                          {section.title}
+                        </p>
+                        <div className="space-y-2.5">
+                          {section.items.map((item) => (
+                            <div
+                              className={`flex items-start gap-2.5 text-[13px] leading-5 ${plan.featured ? "text-white/75" : "text-[#6f667f]"
+                                }`}
+                              key={item.text}
+                            >
+                              <span
+                                className={`mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full ${item.ai
+                                    ? plan.featured
+                                      ? "bg-[#93c5fd]"
+                                      : "bg-[#378add]"
+                                    : plan.featured
+                                      ? "bg-white/45"
+                                      : "bg-[#94a3b8]"
+                                  }`}
+                              />
+                              <span>
+                                {item.text}
+                                {item.ai ? (
+                                  <span
+                                    className={`ml-2 inline-flex rounded-md px-1.5 py-[1px] text-[10px] font-black uppercase tracking-[0.06em] ${plan.featured
+                                        ? "bg-white/14 text-white/75"
+                                        : "bg-[#eff6ff] text-[#1d4ed8]"
+                                      }`}
+                                  >
+                                    AI
+                                  </span>
+                                ) : null}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-auto pt-0">
+                  <a
+                    className="group inline-flex items-center gap-2 self-start rounded-full border border-[#bfdbfe] bg-white pl-1 pr-3 py-1 font-body text-xs font-semibold text-[#1d4ed8] transition-colors duration-300 ease-out hover:bg-[#2563eb] hover:text-white"
+                    href="#pricing"
+                  >
+                    <span className="grid aspect-square h-7 shrink-0 place-items-center rounded-full bg-[#2563eb] text-white transition-colors duration-300 ease-out group-hover:bg-white group-hover:text-[#2563eb]">
+                      <Icon name="arrow" className="h-3 w-[0.95rem]" />
+                    </span>
+                    Learn more
+                  </a>
+                </div>
+              </article>
             </RevealOnScroll>
           ))}
         </div>
@@ -978,10 +962,10 @@ function Pricing() {
         <RevealOnScroll className="mt-4 flex flex-col gap-4 rounded-[1.85rem] border border-[#dbeafe] bg-[#f8fbff] px-5 py-5 shadow-[0_18px_45px_rgba(37,99,235,0.07)] lg:flex-row lg:items-center lg:justify-between" delay={120}>
           <div>
             <p className="font-display text-lg font-black tracking-[-0.03em] text-[#14231d]">
-              Monthly support & maintenance
+              System Operation & Optimization (Required)
             </p>
             <p className="mt-1 text-sm leading-6 text-[#6f667f]">
-              Keep your system running smoothly after setup with prompt tuning, small updates, and ongoing monitoring.
+              Keeps your AI automation running, improving, and actively managed.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
