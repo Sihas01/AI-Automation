@@ -10,6 +10,21 @@ const navItems = [
   { label: "Pricing", href: "#pricing" },
 ];
 
+const setupRequestEmail = "zeylun.team@gmail.com";
+const setupRequestHref = `mailto:${setupRequestEmail}?subject=${encodeURIComponent("Setup request from website")}&body=${encodeURIComponent(
+  `Hi Zeylun team,
+
+I would like to request a setup for my business.
+
+Name:
+Business:
+Phone / WhatsApp:
+Email:
+What do you need automated?
+
+Thanks,`
+)}`;
+
 const serviceIndustries = [
   {
     title: "Educational Institutes",
@@ -481,7 +496,7 @@ function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-1 rounded-full border border-white/85 bg-white px-2 py-2 shadow-[0_14px_36px_rgba(3,10,35,0.18)] lg:flex">
-          <a className="rounded-full bg-[#14231d] px-5 py-2.5 font-body text-xs font-bold text-white shadow-[inset_0_-2px_0_rgba(255,255,255,0.16)] transition hover:bg-[#2563eb]" href="#pricing">
+          <a className="rounded-full bg-[#14231d] px-5 py-2.5 font-body text-xs font-bold text-white shadow-[inset_0_-2px_0_rgba(255,255,255,0.16)] transition hover:bg-[#2563eb]" href={setupRequestHref}>
             Request setup
           </a>
         </div>
@@ -574,7 +589,7 @@ function Header() {
             <div className="mt-4 grid gap-2">
               <a
                 className="rounded-full bg-[#2563eb] px-4 py-3 text-center font-body text-sm font-bold text-white shadow-[0_16px_30px_rgba(37,99,235,0.24)] transition hover:bg-[#1d4ed8]"
-                href="#pricing"
+                href={setupRequestHref}
                 onClick={closeMobileNav}
               >
                 Request setup
@@ -627,7 +642,7 @@ function Hero() {
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
                 className="group inline-flex items-center gap-1.5 rounded-full bg-white px-1.5 py-1.5 font-body text-sm font-black tracking-[-0.01em] text-[#0b2a74] shadow-[0_18px_34px_rgba(0,0,0,0.25)] transition duration-200 hover:bg-[#f0f4ff] active:scale-[0.98]"
-                href="#pricing"
+                href={setupRequestHref}
               >
                 <span className="pl-5">Request setup</span>
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-[#2563eb] text-white transition-colors group-hover:bg-[#1d4ed8]">
