@@ -238,7 +238,7 @@ const maintenancePills = [
   "AI prompt updates",
   "Flow improvements",
   "Minor changes",
-  "LKR 5,000 - 12,000 / month",
+  "LKR 8,000 - 60,000 / month",
 ];
 
 function Icon({ name, className = "h-5 w-5" }) {
